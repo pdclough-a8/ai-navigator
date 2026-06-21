@@ -359,9 +359,9 @@ function renderLayers(){
             onclick="pickLayer('${l.id}')">
           <div class="ln">${l.label}</div>
           <div class="ld">${l.desc}</div>
-          <button class="info-btn"
+          <button type="button" class="info-btn"
             style="background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.5);color:#fff"
-            onclick="event.stopPropagation();openModal('${l.id}')"
+            onclick="showItemInfo(event,'${l.id}')"
             title="Layer details">i</button>
         </div>`;
   });
@@ -378,9 +378,9 @@ function renderLenses(){
           <div class="lc-name" style="color:${l.text}">${l.label}</div>
           ${l.sub?`<div class="lc-sub" style="color:${l.text}">${l.sub}</div>`:""}
           <div class="lc-q">${l.q}</div>
-          <button class="info-btn"
+          <button type="button" class="info-btn"
             style="background:${l.border}1A;border-color:${l.border}66;color:${l.text}"
-            onclick="event.stopPropagation();openModal('${l.id}')"
+            onclick="showItemInfo(event,'${l.id}')"
             title="Theories & frameworks">i</button>
         </div>`;
   });
@@ -460,6 +460,11 @@ function refreshLifecycle(){
       card.style.opacity="1";dot.style.display="none";note.style.display="none";
     }
   });
+}
+
+function showItemInfo(e,id){
+  if(e && e.stopPropagation) e.stopPropagation();
+  openModal(id);
 }
 
 function openModal(id){
