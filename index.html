@@ -209,7 +209,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
       </div>
     </div>
     <div class="modal-bd">
-      <div class="t-label">Theories &amp; Frameworks</div>
+      <div class="t-label" id="t-label">Theories &amp; Frameworks</div>
       <div class="t-list" id="t-list"></div>
     </div>
   </div>
@@ -361,7 +361,7 @@ function renderLayers(){
           <div class="ld">${l.desc}</div>
           <button type="button" class="info-btn"
             style="background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.5);color:#fff"
-            onclick="showItemInfo(event,'${l.id}')"
+            onclick="openModal('${l.id}'); return false;"
             title="Layer details">i</button>
         </div>`;
   });
@@ -380,7 +380,7 @@ function renderLenses(){
           <div class="lc-q">${l.q}</div>
           <button type="button" class="info-btn"
             style="background:${l.border}1A;border-color:${l.border}66;color:${l.text}"
-            onclick="showItemInfo(event,'${l.id}')"
+            onclick="openModal('${l.id}'); return false;"
             title="Theories & frameworks">i</button>
         </div>`;
   });
@@ -460,11 +460,6 @@ function refreshLifecycle(){
       card.style.opacity="1";dot.style.display="none";note.style.display="none";
     }
   });
-}
-
-function showItemInfo(e,id){
-  if(e && e.stopPropagation) e.stopPropagation();
-  openModal(id);
 }
 
 function openModal(id){
