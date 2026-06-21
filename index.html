@@ -39,7 +39,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
   text-align:center;line-height:1.3;}
 .arrow-icon{font-size:18px;color:#CBD5E1;}
 .lenses-col{flex:1;}
-.layer-item{padding:10px 14px;cursor:pointer;transition:all .15s;
+.layer-item{position:relative;padding:10px 14px;cursor:pointer;transition:all .15s;
   border-bottom:1px solid rgba(255,255,255,.07);}
 .layer-item:hover{filter:brightness(1.12);}
 .layer-item.selected{outline:2.5px solid var(--orange)!important;
@@ -217,12 +217,12 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 
 <script>
 const LAYERS=[
-  {id:"capabilities",   label:"Capabilities",        desc:"<b>What the AI does</b>: translate, classify, generate, predict, recommend",                                                       bg:"#1a3a6e"},
-  {id:"operational",    label:"Operational Mode",     desc:"<b>How the system acts in context</b>: degree of autonomy and how it fits into human workflows &ndash; from passive tool to active agent", bg:"#1c3e78"},
-  {id:"paradigm",       label:"Paradigm",             desc:"<b>The fundamental approach</b>: generative AI, predictive ML, symbolic, hybrid",                                                  bg:"#1a3a74"},
-  {id:"learning",       label:"Learning Approach",    desc:"<b>How knowledge is acquired</b>: supervised, unsupervised, reinforcement, self-supervised",                                       bg:"#173570"},
-  {id:"training_data",  label:"Training Data",        desc:"<b>What the system learned from</b>: source, modality, scale, domain scope, and quality of the training corpus",                  bg:"#142e68"},
-  {id:"algorithm",      label:"Algorithm / Architecture", desc:"<b>The specific technique</b>: transformer, CNN, decision tree, diffusion model",                                             bg:"#112660"}
+  {id:"capabilities",   label:"Capabilities",        desc:"<b>What the AI does</b>: translate, classify, generate, predict, recommend",                                                       bg:"#1a3a6e", notes:[{name:"Capabilities details",author:"",desc:"Add descriptive text for this layer here.",url:"#"}]},
+  {id:"operational",    label:"Operational Mode",     desc:"<b>How the system acts in context</b>: degree of autonomy and how it fits into human workflows &ndash; from passive tool to active agent", bg:"#1c3e78", notes:[{name:"Operational mode details",author:"",desc:"Add descriptive text for this layer here.",url:"#"}]},
+  {id:"paradigm",       label:"Paradigm",             desc:"<b>The fundamental approach</b>: generative AI, predictive ML, symbolic, hybrid",                                                  bg:"#1a3a74", notes:[{name:"Paradigm details",author:"",desc:"Add descriptive text for this layer here.",url:"#"}]},
+  {id:"learning",       label:"Learning Approach",    desc:"<b>How knowledge is acquired</b>: supervised, unsupervised, reinforcement, self-supervised",                                       bg:"#173570", notes:[{name:"Learning approach details",author:"",desc:"Add descriptive text for this layer here.",url:"#"}]},
+  {id:"training_data",  label:"Training Data",        desc:"<b>What the system learned from</b>: source, modality, scale, domain scope, and quality of the training corpus",                  bg:"#142e68", notes:[{name:"Training data details",author:"",desc:"Add descriptive text for this layer here.",url:"#"}]},
+  {id:"algorithm",      label:"Algorithm / Architecture", desc:"<b>The specific technique</b>: transformer, CNN, decision tree, diffusion model",                                             bg:"#112660", notes:[{name:"Algorithm details",author:"",desc:"Add descriptive text for this layer here.",url:"#"}]}
 ];
 
 const LENSES=[
@@ -359,6 +359,10 @@ function renderLayers(){
             onclick="pickLayer('${l.id}')">
           <div class="ln">${l.label}</div>
           <div class="ld">${l.desc}</div>
+          <button class="info-btn"
+            style="background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.5);color:#fff"
+            onclick="event.stopPropagation();openModal('${l.id}')"
+            title="Layer details">i</button>
         </div>`;
   });
   h+=`<div class="layer-footer"><span>&#9650; Business need</span><span>Technical detail &#9660;</span></div>`;
@@ -459,25 +463,29 @@ function refreshLifecycle(){
 }
 
 function openModal(id){
-  const l=LENSES.find(x=>x.id===id);
+  let l=LENSES.find(x=>x.id===id);
+  let type="lens";
+  if(!l){l=LAYERS.find(x=>x.id===id);type="layer";}
   if(!l)return;
   document.getElementById("modal-name").textContent=l.label;
-  document.getElementById("modal-name").style.color=l.text;
-  document.getElementById("modal-q").innerHTML=l.q;
+  document.getElementById("modal-name").style.color=l.text||"#202845";
+  document.getElementById("modal-q").innerHTML=l.q||"";
   const hd=document.getElementById("modal-hd");
-  hd.style.background=l.bg;
-  hd.style.borderBottomColor=l.border+"44";
-  document.getElementById("modal-box").style.borderColor=l.border;
-  document.getElementById("t-list").innerHTML=l.theories.map(t=>
+  hd.style.background=l.bg||"#F8FAFC";
+  hd.style.borderBottomColor=(l.border||"#E2E8F0")+"44";
+  document.getElementById("modal-box").style.borderColor=l.border||"#E2E8F0";
+  document.getElementById("t-label").textContent = type==="lens" ? "Theories & Frameworks" : "Notes & Resources";
+  const items = l.theories || l.notes || [];
+  document.getElementById("t-list").innerHTML = items.map(t=>
     `<div class="t-card">
        <div class="t-row">
          <div style="flex:1">
            <div class="t-name">${t.name}</div>
-           <div class="t-author">${t.author}</div>
+           <div class="t-author">${t.author || ""}</div>
            <div class="t-desc">${t.desc}</div>
          </div>
          <a href="${t.url}" target="_blank" rel="noopener noreferrer"
-            class="t-link" style="background:${l.text}">Open &#8599;</a>
+            class="t-link" style="background:${l.text||"#202845"}">${t.url&&t.url!="#"?"Open &#8599;":""}</a>
        </div>
      </div>`
   ).join("");
