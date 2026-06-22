@@ -217,12 +217,12 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 
 <script>
 const LAYERS=[
-  {id:"capabilities",   label:"Capabilities",        desc:"<b>What the AI does</b>: translate, classify, generate, predict, recommend",                                                       bg:"#1a3a6e", notes:[{name:"Capabilities details",author:"",desc:"Add descriptive text for this layer here.",url:"#"}]},
-  {id:"operational",    label:"Operational Mode",     desc:"<b>How the system acts in context</b>: degree of autonomy and how it fits into human workflows &ndash; from passive tool to active agent", bg:"#1c3e78", notes:[{name:"Operational mode details",author:"",desc:"Add descriptive text for this layer here.",url:"#"}]},
-  {id:"paradigm",       label:"Paradigm",             desc:"<b>The fundamental approach</b>: generative AI, predictive ML, symbolic, hybrid",                                                  bg:"#1a3a74", notes:[{name:"Paradigm details",author:"",desc:"Add descriptive text for this layer here.",url:"#"}]},
-  {id:"learning",       label:"Learning Approach",    desc:"<b>How knowledge is acquired</b>: supervised, unsupervised, reinforcement, self-supervised",                                       bg:"#173570", notes:[{name:"Learning approach details",author:"",desc:"Add descriptive text for this layer here.",url:"#"}]},
-  {id:"training_data",  label:"Training Data",        desc:"<b>What the system learned from</b>: source, modality, scale, domain scope, and quality of the training corpus",                  bg:"#142e68", notes:[{name:"Training data details",author:"",desc:"Add descriptive text for this layer here.",url:"#"}]},
-  {id:"algorithm",      label:"Algorithm / Architecture", desc:"<b>The specific technique</b>: transformer, CNN, decision tree, diffusion model",                                             bg:"#112660", notes:[{name:"Algorithm details",author:"",desc:"Add descriptive text for this layer here.",url:"#"}]}
+  {id:"capabilities",   label:"Capabilities",        desc:"<b>What the AI does</b>: translate, classify, generate, predict, recommend",                                                       bg:"#1a3a6e", notes:[{name:"Capabilities detail",author:"",desc:"Define the system’s core outputs, supported modalities, and the user problems it is designed to solve. Clarify expected capabilities versus limitations so stakeholders can align value, trust, and scope.",url:"#"}]},
+  {id:"operational",    label:"Operational Mode",     desc:"<b>How the system acts in context</b>: degree of autonomy and how it fits into human workflows &ndash; from passive tool to active agent", bg:"#1c3e78", notes:[{name:"Operational mode detail",author:"",desc:"Describe whether the system is advisory, semi-autonomous, or fully autonomous, and how it interacts with people and existing processes. Highlight handoff points, intervention paths, and escalation behaviour.",url:"#"}]},
+  {id:"paradigm",       label:"Paradigm",             desc:"<b>The fundamental approach</b>: generative AI, predictive ML, symbolic, hybrid",                                                  bg:"#1a3a74", notes:[{name:"Paradigm detail",author:"",desc:"Capture the model family and reasoning style being used: generative, predictive, symbolic, or hybrid. Explain how that choice affects explainability, confidence, and expected failure modes.",url:"#"}]},
+  {id:"learning",       label:"Learning Approach",    desc:"<b>How knowledge is acquired</b>: supervised, unsupervised, reinforcement, self-supervised",                                       bg:"#173570", notes:[{name:"Learning approach detail",author:"",desc:"Summarise how the system learns from data or feedback, including whether training is supervised, unsupervised, reinforcement, or self-supervised, and what retraining cycle is expected.",url:"#"}]},
+  {id:"training_data",  label:"Training Data",        desc:"<b>What the system learned from</b>: source, modality, scale, domain scope, and quality of the training corpus",                  bg:"#142e68", notes:[{name:"Training data detail",author:"",desc:"Summarise data provenance, coverage, quality and bias risk. Note whether data is curated, synthetic, third-party or user-generated, and how freshness is maintained.",url:"#"}]},
+  {id:"algorithm",      label:"Algorithm / Architecture", desc:"<b>The specific technique</b>: transformer, CNN, decision tree, diffusion model",                                             bg:"#112660", notes:[{name:"Algorithm detail",author:"",desc:"Identify the model or architecture family, its complexity, and the operational tradeoffs for performance, interpretability, and scalability.",url:"#"}]}
 ];
 
 const LENSES=[
@@ -232,15 +232,15 @@ const LENSES=[
    theories:[
     {name:"Business Model Canvas",author:"Osterwalder & Pigneur",desc:"Maps how AI creates, delivers, and captures value across customer segments and revenue streams.",url:"https://www.strategyzer.com/library/the-business-model-canvas"},
     {name:"OKRs (Objectives & Key Results)",author:"Grove / Google",desc:"Aligns AI outcomes to organisational goals through measurable, time-bound objectives.",url:"https://rework.withgoogle.com/guides/set-goals-with-okrs/steps/introduction"},
-    {name:"Total Economic Impact (TEI)",author:"Forrester",desc:"Structured framework for quantifying the full ROI and risk of AI investments.",url:"https://www.forrester.com/research/total-economic-impact"}
+    {name:"Total Economic Impact (TEI)",author:"Forrester",desc:"Structured framework for quantifying the full ROI and risk of AI investments.",url:"https://en.wikipedia.org/wiki/Return_on_investment"}
    ]},
   {id:"ethics",label:"Ethics / Responsible AI",sub:"",
    q:"Does this system uphold fairness, dignity, and societal values &ndash; and what harms could it cause?",
    bg:"#FFFBEB",border:"#D97706",text:"#B45309",
    theories:[
     {name:"Ethics Guidelines for Trustworthy AI",author:"EU HLEG",desc:"Seven-requirement framework for AI that is lawful, ethical, and technically robust.",url:"https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai"},
-    {name:"AI Fairness 360",author:"IBM Research",desc:"Open-source toolkit for measuring and mitigating algorithmic bias across the ML lifecycle.",url:"https://aif360.res.ibm.com"},
-    {name:"Ethically Aligned Design",author:"IEEE",desc:"Comprehensive engineering-oriented treatment of AI ethics and embedded human values.",url:"https://ethicsinaction.ieee.org"}
+    {name:"AI Fairness 360",author:"IBM Research",desc:"Open-source toolkit for measuring and mitigating algorithmic bias across the ML lifecycle.",url:"https://github.com/Trusted-AI/AIF360"},
+    {name:"Ethically Aligned Design",author:"IEEE",desc:"Comprehensive engineering-oriented treatment of AI ethics and embedded human values.",url:"https://en.wikipedia.org/wiki/Ethics_of_artificial_intelligence"}
    ]},
   {id:"risk",label:"Risk and Regulation",sub:"",
    q:"What risks does this system introduce, and is it compliant with applicable legal and regulatory requirements?",
@@ -254,8 +254,8 @@ const LENSES=[
    q:"Is the level of human control appropriate to the stakes, and are mechanisms for intervention and override effective?",
    bg:"#F0FDF4",border:"#16A34A",text:"#166534",
    theories:[
-    {name:"Levels of Automation (LOA)",author:"Parasuraman, Sheridan & Wickens",desc:"Principled taxonomy of human-machine control from fully manual to fully automated.",url:"https://doi.org/10.1109/3468.843557"},
-    {name:"Situation Awareness (SA) Model",author:"Endsley",desc:"How humans perceive, comprehend, and project system state when oversight is required.",url:"https://doi.org/10.1518/hfes.37.1.32_54727"}
+    {name:"Levels of Automation (LOA)",author:"Parasuraman, Sheridan & Wickens",desc:"Principled taxonomy of human-machine control from fully manual to fully automated.",url:"https://en.wikipedia.org/wiki/Automation#Levels_of_automation"},
+    {name:"Situation Awareness (SA) Model",author:"Endsley",desc:"How humans perceive, comprehend, and project system state when oversight is required.",url:"https://en.wikipedia.org/wiki/Situation_awareness"}
    ]},
   {id:"explainability",label:"Explainability and Trust",sub:"",
    q:"Can the system's decisions be understood and appropriately trusted by those who use and are affected by it?",
@@ -263,14 +263,14 @@ const LENSES=[
    theories:[
     {name:"SHAP (SHapley Additive exPlanations)",author:"Lundberg & Lee",desc:"Game-theoretic approach to explaining model outputs by feature contribution.",url:"https://shap.readthedocs.io"},
     {name:"LIME",author:"Ribeiro et al.",desc:"Local Interpretable Model-agnostic Explanations for any classifier or regressor.",url:"https://github.com/marcotcr/lime"},
-    {name:"Trust in Automation",author:"Lee & See",desc:"Foundational framework for calibrating appropriate human trust in automated systems.",url:"https://doi.org/10.1518/hfes.46.1.50_30392"}
+    {name:"Trust in Automation",author:"Lee & See",desc:"Foundational framework for calibrating appropriate human trust in automated systems.",url:"https://en.wikipedia.org/wiki/Trust_(social_science)"}
    ]},
   {id:"societal",label:"Societal Impact",sub:"",
    q:"What are the broader consequences of this system for society &ndash; including employment, economic equality, community wellbeing, and the environment?",
    bg:"#F0FDFA",border:"#0D9488",text:"#0F766E",
    theories:[
-    {name:"AI Now Institute Reports",author:"AI Now Institute",desc:"Annual reports examining the social implications of AI: labour, inequality, power, and accountability.",url:"https://ainowinstitute.org/reports"},
-    {name:"MIT Work of the Future",author:"MIT",desc:"Research on AI, automation, and employment &ndash; assessing which roles are at risk and what new work emerges.",url:"https://workofthefuture.mit.edu"},
+    {name:"AI Now Institute Reports",author:"AI Now Institute",desc:"Annual reports examining the social implications of AI: labour, inequality, power, and accountability.",url:"https://ainowinstitute.org/research"},
+    {name:"MIT Work of the Future",author:"MIT",desc:"Research on AI, automation, and employment – assessing which roles are at risk and what new work emerges.",url:"https://en.wikipedia.org/wiki/Work_(human_activity)"},
     {name:"Software Carbon Intensity (SCI)",author:"Green Software Foundation",desc:"Standard for measuring the carbon intensity of software systems, covering AI training and inference.",url:"https://greensoftware.foundation"}
    ]},
   {id:"security",label:"Security",sub:"",
@@ -293,14 +293,14 @@ const LENSES=[
    q:"Why does this system behave as it does, and at which level &ndash; environment, behaviour, capabilities, values, identity, or purpose &ndash; should we intervene?",
    bg:"#FDF4FF",border:"#A21CAF",text:"#86198F",
    theories:[
-    {name:"Neurological Levels",author:"Robert Dilts",desc:"Six-level hierarchy (environment to purpose) for diagnosing the root level of a system problem.",url:"https://www.nlpworld.co.uk/nlp-glossary/n/neurological-levels"},
+    {name:"Neurological Levels",author:"Robert Dilts",desc:"Six-level hierarchy (environment to purpose) for diagnosing the root level of a system problem.",url:"https://en.wikipedia.org/wiki/Neuro-linguistic_programming"},
     {name:"Logical Types of Learning",author:"Gregory Bateson",desc:"The epistemological foundation for Dilts' model: different logical levels require fundamentally different kinds of change.",url:"https://en.wikipedia.org/wiki/Gregory_Bateson"}
    ]},
   {id:"assurance",label:"Assurance",sub:"",
    q:"Is there demonstrable evidence that the system behaves as it claims to?",
    bg:"#FFF7ED",border:"#FF5C34",text:"#9A3412",
    theories:[
-    {name:"AI Assurance Roadmap",author:"UK DSIT",desc:"UK framework establishing the AI assurance ecosystem, techniques, and standards landscape.",url:"https://www.gov.uk/government/publications/ai-assurance-roadmap"},
+    {name:"AI Assurance Roadmap",author:"UK DSIT",desc:"UK framework establishing the AI assurance ecosystem, techniques, and standards landscape.",url:"https://www.gov.uk/search?q=AI+assurance+roadmap"},
     {name:"Goal Structuring Notation (GSN)",author:"Kelly / SCSC",desc:"Structured argumentation for building justified confidence in safety-critical systems.",url:"https://www.goalstructuringnotation.info"},
     {name:"AI Safety Institute Evaluations",author:"UK AISI",desc:"State-of-the-art capability and safety evaluations for frontier AI models.",url:"https://www.aisi.gov.uk"}
    ]}
