@@ -467,7 +467,9 @@ function openModal(id){
   let type="lens";
   if(!l){l=LAYERS.find(x=>x.id===id);type="layer";}
   if(!l)return;
-  document.getElementById("modal-name").style.color = "#fff";
+  const titleEl = document.getElementById("modal-name");
+  titleEl.textContent = l.label || "";
+  titleEl.style.color = "#fff";
   document.getElementById("modal-q").innerHTML=l.q||"";
   const hd=document.getElementById("modal-hd");
   hd.style.background=l.bg||"#F8FAFC";
