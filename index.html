@@ -110,6 +110,8 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 .modal-close-btn{background:none;border:none;cursor:pointer;color:#94A3B8;
   font-size:18px;line-height:1;padding:2px 4px;flex-shrink:0;}
 .modal-bd{padding:14px 18px 18px;overflow-y:auto;}
+.modal-bd ul{margin:10px 0 0 16px;padding-left:18px;}
+.modal-bd ul li{margin-bottom:8px;}
 .t-label{font-size:9.5px;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;color:#94A3B8;margin-bottom:10px;}
 .t-list{display:flex;flex-direction:column;gap:9px;}
@@ -136,8 +138,11 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 
 <main class="main">
   <div class="page-intro">
-    <div class="page-headline">Technical Layers &middot; Lifecycle &middot; Lenses</div>
-    <p class="page-subtitle">Click a <strong>layer</strong> or <strong>lens</strong> to see its lifecycle relevance.
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:nowrap;">
+      <div class="page-headline" style="margin-bottom:0;">Technical Layers · Lifecycle · Lenses</div>
+      <button id="intro-btn" onclick="showIntroModal(true)" aria-label="Overview" style="padding:5px 9px;border-radius:6px;background:var(--navy);color:#fff;border:none;font-weight:700;cursor:pointer;font-size:11px;line-height:1.2;align-self:center;">Overview</button>
+    </div>
+    <p class="page-subtitle" style="margin-top:8px;">Click a <strong>layer</strong> or <strong>lens</strong> to see its lifecycle relevance.
       Click the <strong style="font-family:Georgia,serif;font-style:italic">i</strong> on any lens for theories &amp; resources.</p>
   </div>
 
@@ -211,6 +216,33 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
     <div class="modal-bd">
       <div class="t-label" id="t-label">Theories &amp; Frameworks</div>
       <div class="t-list" id="t-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Intro modal (overview) -->
+<div class="modal-overlay" id="intro-overlay" onclick="hideIntroModal()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-hd" style="background:var(--navy);">
+      <div class="modal-hd-row">
+        <div>
+          <div class="modal-name" id="intro-name">AI Navigator - Overview</div>
+          <div class="modal-q" id="intro-sub" style="color:#fff;">Quick orientation and usage tips</div>
+        </div>
+        <button class="modal-close-btn" onclick="hideIntroModal()">&#10005;</button>
+      </div>
+    </div>
+    <div class="modal-bd">
+      <p>The AI Navigator aims to help people understand and navigate the landcape of AI and AI systems. The interactive web page maps systems across three interlocking dimensions. Use the bullets below to get started or jump straight into the page.</p>
+      <ul>
+        <li><strong>Layers</strong> - what the system is (capabilities, data, algorithm).</li>
+        <li><strong>Lifecycle</strong> - when concerns are most actionable (define, data, build, evaluate, deploy, operate).</li>
+        <li><strong>Lenses</strong> - how to evaluate the system (ethics, security, business value, etc.).</li>
+      </ul>
+      <p style="margin-top:8px;">Tip: click the <em>i</em> icons on lenses and layers to open related resources.</p>
+      <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;">
+        <input type="checkbox" id="intro-dismiss"> Don't show this again
+      </label>
     </div>
   </div>
 </div>
@@ -494,7 +526,29 @@ function openModal(id){
 }
 
 function closeModal(){document.getElementById("modal-overlay").classList.remove("open");}
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
+
+// Intro modal controls
+function showIntroModal(force){
+  if(!force && localStorage.getItem('a8_intro_dismissed')==='1') return;
+  const el = document.getElementById('intro-overlay');
+  if(el) el.classList.add('open');
+}
+function hideIntroModal(){
+  const cb = document.getElementById('intro-dismiss');
+  if(cb && cb.checked) localStorage.setItem('a8_intro_dismissed','1');
+  const el = document.getElementById('intro-overlay');
+  if(el) el.classList.remove('open');
+}
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){ closeModal(); hideIntroModal(); }
+});
+
+document.addEventListener('DOMContentLoaded',()=>{
+  if(!localStorage.getItem('a8_intro_dismissed')){
+    setTimeout(()=>showIntroModal(),600);
+  }
+});
 
 renderLayers();
 renderLenses();
