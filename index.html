@@ -150,7 +150,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
       <div class="panel">
         <div class="ph">
           <div class="ph-title">TECHNICAL LAYERS</div>
-          <div class="ph-sub">What the AI system <em>is</em> at each level of abstraction</div>
+          <div class="ph-sub">What the AI system <em>is</em> at each level of abstraction (from how it works to what it does)</div>
         </div>
         <div id="layers-body"></div>
       </div>
@@ -189,7 +189,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 
   <div class="insight-bar">
     <strong>Three dimensions of AI characterisation:</strong>
-    <strong>Layers</strong> answer <em>what</em> the system is &nbsp;&middot;&nbsp;
+    <strong>Layers</strong> answer <em>what</em> the system is (from how it works to what it does)&nbsp;&middot;&nbsp;
     <strong>Lifecycle</strong> answers <em>when</em> each concern is most actionable &nbsp;&middot;&nbsp;
     <strong>Lenses</strong> answer <em>how</em> to evaluate it.
     Together they form a complete compass for understanding, deploying, and governing AI systems.
@@ -234,7 +234,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
     <div class="modal-bd">
       <p>The AI Navigator provides a way of characteristing and viewing AI systems from diffferent perspectives to help you better understand AI. The interactive web page maps systems across three interlocking dimensions. Use the bullets below to get started or jump straight into the page.</p>
       <ul>
-        <li><strong>Layers</strong> - what the system is (capabilities, data, algorithm).</li>
+        <li><strong>Layers</strong> - what the system is (capabilities, data, algorithm) at different levels of abstraction.</li>
         <li><strong>Lifecycle</strong> - when concerns are most actionable (define, data, build, evaluate, deploy, operate).</li>
         <li><strong>Lenses</strong> - how to evaluate the system (ethics, security, business value, etc.).</li>
       </ul>
@@ -257,7 +257,7 @@ const LAYERS=[
 ];
 
 const LENSES=[
-  {id:"business",label:"Business Value",sub:"Primary entry point",
+  {id:"business",label:"Business Value",sub:"",
    q:"What measurable value does this AI system create, for whom, for what use cases and does it justify the cost and risk?",
    bg:"#EFF6FF",border:"#0051AB",text:"#003D82",
    theories:[
@@ -396,7 +396,7 @@ function renderLayers(){
             title="Layer details">i</button>
         </div>`;
   });
-  h+=`<div class="layer-footer"><span>&#9650; Business need</span><span>Technical detail &#9660;</span></div>`;
+  h+=`<div class="layer-footer"><span>&#9650; Capabilities</span><span>Technical detail &#9660;</span></div>`;
   document.getElementById("layers-body").innerHTML=h;
 }
 
