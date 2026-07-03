@@ -159,7 +159,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
   <div class="page-intro">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:nowrap;">
       <div class="page-headline" style="margin-bottom:0;">Layers · Lifecycle · Lenses</div>
-      <button id="intro-btn" onclick="showIntroModal(true)" aria-label="Overview" style="padding:5px 9px;border-radius:6px;background:var(--navy);color:#fff;border:none;font-weight:700;cursor:pointer;font-size:11px;line-height:1.2;align-self:center;">Overview</button>
+      <button id="intro-btn" onclick="showIntroModal()" aria-label="Overview" style="padding:5px 9px;border-radius:6px;background:var(--navy);color:#fff;border:none;font-weight:700;cursor:pointer;font-size:11px;line-height:1.2;align-self:center;">Overview</button>
       <button id="examples-btn" onclick="showExamplesModal()" aria-label="Worked Examples" style="padding:5px 9px;border-radius:6px;background:#fff;color:var(--navy);border:1.5px solid var(--navy);font-weight:700;cursor:pointer;font-size:11px;line-height:1.2;align-self:center;">Worked Examples</button>
     </div>
     <p class="page-subtitle" style="margin-top:8px;">Click a <strong>layer</strong> or <strong>lens</strong> to see its lifecycle relevance.
@@ -265,9 +265,6 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
         <li><strong>Lenses</strong> - how to evaluate the system (ethics, security, business value, etc.).</li>
       </ul>
       <p style="margin-top:8px;">Tip: click the <em>i</em> icons on lenses and layers to open related resources.</p>
-      <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;">
-        <input type="checkbox" id="intro-dismiss"> Don't show this again
-      </label>
     </div>
   </div>
 </div>
@@ -674,14 +671,11 @@ function openModal(id){
 function closeModal(){document.getElementById("modal-overlay").classList.remove("open");}
 
 // Intro modal controls
-function showIntroModal(force){
-  if(!force && localStorage.getItem('a8_intro_dismissed')==='1') return;
+function showIntroModal(){
   const el = document.getElementById('intro-overlay');
   if(el) el.classList.add('open');
 }
 function hideIntroModal(){
-  const cb = document.getElementById('intro-dismiss');
-  if(cb && cb.checked) localStorage.setItem('a8_intro_dismissed','1');
   const el = document.getElementById('intro-overlay');
   if(el) el.classList.remove('open');
 }
@@ -697,12 +691,6 @@ function hideExamplesModal(){
 
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"){ closeModal(); hideIntroModal(); hideExamplesModal(); }
-});
-
-document.addEventListener('DOMContentLoaded',()=>{
-  if(!localStorage.getItem('a8_intro_dismissed')){
-    setTimeout(()=>showIntroModal(),600);
-  }
 });
 
 renderLayers();
