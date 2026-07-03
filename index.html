@@ -199,8 +199,8 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
   <div class="lifecycle-section">
     <div class="lc-header">
       <div>
-        <div class="lc-title">AI LIFECYCLE</div>
-        <div class="lc-sub-txt" id="lc-subtitle">Select a layer or lens above to see its lifecycle relevance</div>
+        <div class="lc-title">LIFECYCLE</div>
+        <div class="lc-sub-txt" id="lc-subtitle">Select a layer or lens above to see its AI lifecycle relevance</div>
       </div>
       <div class="lc-legend" id="lc-legend">
         <span style="color:#FF5C34;font-weight:700">&#9679; High</span>
@@ -356,7 +356,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 
 <script>
 const LAYERS=[
-  {id:"capabilities",   label:"Capabilities",        desc:"<b>What the AI does</b>: translate, classify, generate, predict, recommend",                                                       bg:"#1a3a6e", notes:[{name:"Capabilities",author:"Wikipedia",desc:"Define the system's core outputs, supported modalities, and the user problems it is designed to solve. Clarify expected capabilities versus limitations so stakeholders can align value, trust, and scope.",url:"https://en.wikipedia.org/wiki/Artificial_intelligence"}]},
+  {id:"capabilities",   label:"Capabilities",        desc:"<b>What the AI does</b>: translate, classify, generate, predict, recommend",                                                       bg:"#1a3a6e", notes:[{name:"Capabilities",author:"Wikipedia",desc:"Define the system's core outputs, supported modalities, and the user problems it is designed to solve. Clarify expected capabilities versus limitations so stakeholders can align value, trust, and scope.",url:"https://aidesignkit.github.io/"}]},
   {id:"operational",    label:"Operational Mode",     desc:"<b>How the system acts in context</b>: degree of autonomy and how it fits into human workflows &ndash; from passive tool to active agent", bg:"#1c3e78", notes:[{name:"Operational mode",author:"Wikipedia",desc:"Describe whether the system is advisory, semi-autonomous, or fully autonomous, and how it interacts with people and existing processes. Highlight handoff points, intervention paths, and escalation behaviour.",url:"https://en.wikipedia.org/wiki/Autonomy_(artificial_intelligence)"}]},
   {id:"paradigm",       label:"Paradigm",             desc:"<b>The fundamental approach</b>: generative AI, predictive ML, symbolic, hybrid",                                                  bg:"#1a3a74", notes:[{name:"Paradigm",author:"Wikipedia",desc:"Capture the model family and reasoning style being used: generative, predictive, symbolic, or hybrid. Explain how that choice affects explainability, confidence, and expected failure modes.",url:"https://en.wikipedia.org/wiki/Machine_learning"}]},
   {id:"learning",       label:"Learning Approach",    desc:"<b>How knowledge is acquired</b>: supervised, unsupervised, reinforcement, self-supervised",                                       bg:"#173570", notes:[{name:"Learning approach",author:"Wikipedia",desc:"Summarise how the system learns from data or feedback, including whether training is supervised, unsupervised, reinforcement, or self-supervised, and what retraining cycle is expected.",url:"https://en.wikipedia.org/wiki/Supervised_learning"}]},
@@ -369,23 +369,23 @@ const GENERALITY=[
    q:"Built and optimised for a specific task or a tightly bounded family of tasks. Performance and skill do not transfer outside that scope &ndash; a fraud model can't write an email, however good it is at fraud.",
    bg:"#F8FAFC",border:"#6F8093",text:"#334155",
    examples:[
-    {name:"Recommender systems",desc:"e.g. Netflix, Amazon &ndash; predicts preference for one purpose: ranking items for a user.",url:"#"},
-    {name:"Credit scoring / fraud detection",desc:"Classifies a transaction or application against one learned outcome.",url:"#"},
-    {name:"Spam filters, image classifiers, translation engines",desc:"Each solves one well-defined problem and nothing else.",url:"#"}
+    {name:"Recommender systems",desc:"e.g. Netflix, Amazon &ndash; predicts preference for one purpose: ranking items for a user."},
+    {name:"Credit scoring / fraud detection",desc:"Classifies a transaction or application against one learned outcome."},
+    {name:"Spam filters, image classifiers, translation engines",desc:"Each solves one well-defined problem and nothing else."}
    ]},
   {id:"general_purpose",label:"General-purpose",sub:"Many tasks, one system",
    q:"A single model or system that performs many different tasks across domains &ndash; via prompting, fine-tuning or in-context learning &ndash; without being rebuilt for each new task. Often called a &lsquo;foundation model&rsquo;.",
    bg:"#EFF6FF",border:"#0051AB",text:"#003D82",
    examples:[
-    {name:"ChatGPT, Claude, Gemini",desc:"One model handles writing, coding, analysis, translation, tutoring, etc.",url:"#"},
-    {name:"Multimodal foundation models",desc:"e.g. GPT-4o &ndash; broad competence across text, image and audio.",url:"#"}
+    {name:"ChatGPT, Claude, Gemini",desc:"One model handles writing, coding, analysis, translation, tutoring, etc."},
+    {name:"Multimodal foundation models",desc:"e.g. GPT-4o &ndash; broad competence across text, image and audio."}
    ]},
   {id:"agi",label:"(Artificial) General Intelligence",sub:"Hypothetical &ndash; does not exist yet",
    q:"A hypothetical system with human-level (or beyond) cognitive flexibility: able to learn, transfer and reason across virtually any domain autonomously, not just the domains it was trained or prompted on. No current system meets this bar &ndash; the term is frequently used more loosely (and inflated) in marketing than this definition allows.",
    bg:"#FDF4FF",border:"#A21CAF",text:"#86198F",
    examples:[
-    {name:"Why this differs from &lsquo;general-purpose&rsquo;",desc:"Breadth of tasks a model can be prompted to attempt is not the same as human-like autonomous reasoning, transfer and self-directed learning across novel domains.",url:"#"},
-    {name:"Current status",desc:"An open research goal and subject of active debate, not a deployed capability of today's systems.",url:"#"}
+    {name:"Why this differs from &lsquo;general-purpose&rsquo;",desc:"Breadth of tasks a model can be prompted to attempt is not the same as human-like autonomous reasoning, transfer and self-directed learning across novel domains."},
+    {name:"Current status",desc:"An open research goal and subject of active debate, not a deployed capability of today's systems."}
    ]}
 ];
 
@@ -434,7 +434,7 @@ const LENSES=[
    bg:"#F0FDFA",border:"#0D9488",text:"#0F766E",
    theories:[
     {name:"AI Now Institute Reports",author:"AI Now Institute",desc:"Annual reports examining the social implications of AI: labour, inequality, power, and accountability.",url:"https://ainowinstitute.org/research"},
-    {name:"MIT Work of the Future",author:"MIT",desc:"Research on AI, automation, and employment – assessing which roles are at risk and what new work emerges.",url:"https://en.wikipedia.org/wiki/Work_(human_activity)"},
+    {name:"MIT Work of the Future",author:"MIT",desc:"Research on AI, automation, and employment - assessing which roles are at risk and what new work emerges.",url:"https://en.wikipedia.org/wiki/Work_(human_activity)"},
     {name:"Software Carbon Intensity (SCI)",author:"Green Software Foundation",desc:"Standard for measuring the carbon intensity of software systems, covering AI training and inference.",url:"https://greensoftware.foundation"}
    ]},
   {id:"security",label:"Security",sub:"",
