@@ -65,6 +65,26 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
   font-family:Georgia,serif;font-style:italic;background:transparent;
   transition:opacity .15s;}
 .info-btn:hover{opacity:.7;}
+.scope-strip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:7px 12px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:7px;margin-top:10px;}
+.scope-strip-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gray);flex-shrink:0;}
+.scope-row{display:flex;gap:6px;flex-wrap:wrap;}
+.scope-chip{padding:4px 10px;border-radius:20px;cursor:pointer;
+  border-style:solid;border-width:1.3px;transition:all .15s;}
+.scope-chip:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.08);}
+.scope-name{font-weight:700;font-size:10.5px;white-space:nowrap;}
+.scope-strip-hint{font-size:9.5px;color:var(--gray);margin-left:auto;}
+.modal-box-wide{max-width:960px;}
+.table-scroll{overflow-x:auto;margin-top:4px;}
+.examples-table{width:100%;border-collapse:collapse;font-size:10.8px;min-width:680px;}
+.examples-table th,.examples-table td{padding:8px 10px;text-align:left;
+  border-bottom:1px solid #E2E8F0;vertical-align:top;line-height:1.4;}
+.examples-table thead th{background:#F8FAFC;font-size:9.5px;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--gray);position:sticky;top:0;}
+.examples-table td.row-label{font-weight:700;color:#fff;white-space:nowrap;font-size:10.5px;}
+.examples-table tr.scope-row-tr td.row-label{color:var(--dark);background:#F1F5F9;}
+.examples-table tr.scope-row-tr td{background:#F8FAFC;font-style:italic;}
 .lifecycle-section{background:var(--white);border-radius:var(--r);
   border:1px solid #E2E8F0;overflow:hidden;margin-bottom:10px;}
 .lc-header{background:#F8FAFC;padding:9px 16px;border-bottom:1px solid #E2E8F0;
@@ -140,9 +160,15 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:nowrap;">
       <div class="page-headline" style="margin-bottom:0;">Technical Layers · Lifecycle · Lenses</div>
       <button id="intro-btn" onclick="showIntroModal(true)" aria-label="Overview" style="padding:5px 9px;border-radius:6px;background:var(--navy);color:#fff;border:none;font-weight:700;cursor:pointer;font-size:11px;line-height:1.2;align-self:center;">Overview</button>
+      <button id="examples-btn" onclick="showExamplesModal()" aria-label="Worked Examples" style="padding:5px 9px;border-radius:6px;background:#fff;color:var(--navy);border:1.5px solid var(--navy);font-weight:700;cursor:pointer;font-size:11px;line-height:1.2;align-self:center;">Worked Examples</button>
     </div>
     <p class="page-subtitle" style="margin-top:8px;">Click a <strong>layer</strong> or <strong>lens</strong> to see its lifecycle relevance.
       Click the <strong style="font-family:Georgia,serif;font-style:italic">i</strong> on any lens for theories &amp; resources.</p>
+    <div class="scope-strip">
+      <span class="scope-strip-label">Scope</span>
+      <div class="scope-row" id="scope-body"></div>
+      <span class="scope-strip-hint">tag, not a layer &middot; click for definition</span>
+    </div>
   </div>
 
   <div class="top-row">
@@ -232,7 +258,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
       </div>
     </div>
     <div class="modal-bd">
-      <p>The AI Navigator provides a way of characteristing and viewing AI systems from diffferent perspectives to help you better understand AI. The interactive web page maps systems across three interlocking dimensions. Use the bullets below to get started or jump straight into the page.</p>
+      <p>The AI Navigator provides a way of characterising and viewing AI systems from different perspectives to help you better understand AI. The interactive web page maps systems across three interlocking dimensions. Use the bullets below to get started or jump straight into the page.</p>
       <ul>
         <li><strong>Layers</strong> - what the system is (capabilities, data, algorithm) at different levels of abstraction.</li>
         <li><strong>Lifecycle</strong> - when concerns are most actionable (define, data, build, evaluate, deploy, operate).</li>
@@ -242,6 +268,88 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
       <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;">
         <input type="checkbox" id="intro-dismiss"> Don't show this again
       </label>
+    </div>
+  </div>
+</div>
+
+<!-- Worked Examples modal -->
+<div class="modal-overlay" id="examples-overlay" onclick="hideExamplesModal()">
+  <div class="modal-box modal-box-wide" onclick="event.stopPropagation()">
+    <div class="modal-hd" style="background:var(--navy);">
+      <div class="modal-hd-row">
+        <div>
+          <div class="modal-name">Worked Examples</div>
+          <div class="modal-q" style="color:#fff;">Four systems, characterised across the same six layers &ndash; plus their scope tag</div>
+        </div>
+        <button class="modal-close-btn" onclick="hideExamplesModal()">&#10005;</button>
+      </div>
+    </div>
+    <div class="modal-bd">
+      <div class="table-scroll">
+        <table class="examples-table">
+          <thead>
+            <tr>
+              <th>Layer</th>
+              <th>ChatGPT</th>
+              <th>Recommender<br><span style="font-weight:400;text-transform:none;">(e.g. Netflix)</span></th>
+              <th>Credit scoring /<br><span style="font-weight:400;text-transform:none;">fraud detection</span></th>
+              <th>Self-driving car<br><span style="font-weight:400;text-transform:none;">(perception &amp; planning)</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label" style="background:#1a3a6e;">Capabilities</td>
+              <td>Generate text/code, converse, summarise, reason across many domains</td>
+              <td>Predict preference, rank/suggest items</td>
+              <td>Classify a transaction/application as a risk score</td>
+              <td>Perceive environment, predict trajectories, plan actions</td>
+            </tr>
+            <tr>
+              <td class="row-label" style="background:#1c3e78;">Operational Mode</td>
+              <td>Conversational assistant &rarr; increasingly agentic (tool use)</td>
+              <td>Passive, embedded, largely invisible suggestion</td>
+              <td>Decision support, often auto-approve/decline within thresholds</td>
+              <td>Highly autonomous, real-time closed-loop control</td>
+            </tr>
+            <tr>
+              <td class="row-label" style="background:#1a3a74;">Paradigm</td>
+              <td>Generative (LLM) + hybrid (RAG, tool use)</td>
+              <td>Predictive, hybrid (collaborative + content-based)</td>
+              <td>Predictive / discriminative</td>
+              <td>Hybrid: deep learning perception + symbolic/optimisation planning</td>
+            </tr>
+            <tr>
+              <td class="row-label" style="background:#173570;">Learning Approach</td>
+              <td>Self-supervised pretraining + RLHF fine-tuning</td>
+              <td>Supervised + implicit feedback signals</td>
+              <td>Supervised, on labelled historical outcomes</td>
+              <td>Supervised (perception) + imitation/RL (planning)</td>
+            </tr>
+            <tr>
+              <td class="row-label" style="background:#142e68;">Training Data</td>
+              <td>Internet-scale multi-domain text (+ some multimodal), curated instruction data</td>
+              <td>User interaction logs, item metadata</td>
+              <td>Historical transactions/applications with labelled outcomes</td>
+              <td>Camera/lidar/radar logs + simulation</td>
+            </tr>
+            <tr>
+              <td class="row-label" style="background:#112660;">Algorithm</td>
+              <td>Transformer (decoder)</td>
+              <td>Matrix factorisation / embeddings / gradient-boosted trees</td>
+              <td>Logistic regression / gradient-boosted trees / neural nets</td>
+              <td>CNNs (perception) + planning algorithms (MPC, RL policy)</td>
+            </tr>
+            <tr class="scope-row-tr">
+              <td class="row-label">Scope (tag, not a layer)</td>
+              <td>General-purpose</td>
+              <td>Narrow</td>
+              <td>Narrow</td>
+              <td>Narrow <span style="font-style:normal;">(generalist driving policies are emerging, but not there yet)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:10.5px;color:var(--gray);margin-top:10px;line-height:1.5;">Notice that two systems can share a scope (both Narrow) yet differ completely across every other layer &ndash; and a General-purpose system isn't automatically more autonomous or higher-stakes than a Narrow one. Characterising by dimension, rather than a single label, is the point.</p>
     </div>
   </div>
 </div>
@@ -256,9 +364,34 @@ const LAYERS=[
   {id:"algorithm",      label:"Algorithm / Architecture", desc:"<b>The specific technique</b>: transformer, CNN, decision tree, diffusion model",                                             bg:"#112660", notes:[{name:"Algorithm",author:"Wikipedia",desc:"Identify the model or architecture family, its complexity, and the operational tradeoffs for performance, interpretability, and scalability.",url:"https://en.wikipedia.org/wiki/Machine_learning_algorithm"}]}
 ];
 
+const GENERALITY=[
+  {id:"narrow",label:"Narrow (ANI)",sub:"One task, tightly bounded",
+   q:"Built and optimised for a specific task or a tightly bounded family of tasks. Performance and skill do not transfer outside that scope &ndash; a fraud model can't write an email, however good it is at fraud.",
+   bg:"#F8FAFC",border:"#6F8093",text:"#334155",
+   examples:[
+    {name:"Recommender systems",desc:"e.g. Netflix, Amazon &ndash; predicts preference for one purpose: ranking items for a user.",url:"#"},
+    {name:"Credit scoring / fraud detection",desc:"Classifies a transaction or application against one learned outcome.",url:"#"},
+    {name:"Spam filters, image classifiers, translation engines",desc:"Each solves one well-defined problem and nothing else.",url:"#"}
+   ]},
+  {id:"general_purpose",label:"General-purpose",sub:"Many tasks, one system",
+   q:"A single model or system that performs many different tasks across domains &ndash; via prompting, fine-tuning or in-context learning &ndash; without being rebuilt for each new task. Often called a &lsquo;foundation model&rsquo;.",
+   bg:"#EFF6FF",border:"#0051AB",text:"#003D82",
+   examples:[
+    {name:"ChatGPT, Claude, Gemini",desc:"One model handles writing, coding, analysis, translation, tutoring, etc.",url:"#"},
+    {name:"Multimodal foundation models",desc:"e.g. GPT-4o &ndash; broad competence across text, image and audio.",url:"#"}
+   ]},
+  {id:"agi",label:"(Artificial) General Intelligence",sub:"Hypothetical &ndash; does not exist yet",
+   q:"A hypothetical system with human-level (or beyond) cognitive flexibility: able to learn, transfer and reason across virtually any domain autonomously, not just the domains it was trained or prompted on. No current system meets this bar &ndash; the term is frequently used more loosely (and inflated) in marketing than this definition allows.",
+   bg:"#FDF4FF",border:"#A21CAF",text:"#86198F",
+   examples:[
+    {name:"Why this differs from &lsquo;general-purpose&rsquo;",desc:"Breadth of tasks a model can be prompted to attempt is not the same as human-like autonomous reasoning, transfer and self-directed learning across novel domains.",url:"#"},
+    {name:"Current status",desc:"An open research goal and subject of active debate, not a deployed capability of today's systems.",url:"#"}
+   ]}
+];
+
 const LENSES=[
   {id:"business",label:"Business Value",sub:"",
-   q:"What measurable value does this AI system create, for whom, for what use cases and does it justify the cost and risk?",
+   q:"What measurable value does this AI system create, for whom, for what use cases / applications, and does it justify the cost and risk?",
    bg:"#EFF6FF",border:"#0051AB",text:"#003D82",
    theories:[
     {name:"Business Model Canvas",author:"Osterwalder & Pigneur",desc:"Maps how AI creates, delivers, and captures value across customer segments and revenue streams.",url:"https://www.strategyzer.com/library/the-business-model-canvas"},
@@ -396,7 +529,7 @@ function renderLayers(){
             title="Layer details">i</button>
         </div>`;
   });
-  h+=`<div class="layer-footer"><span>&#9650; Capabilities</span><span>Technical detail &#9660;</span></div>`;
+  h+=`<div class="layer-footer"><span>&#9650; Emergent capabilities</span><span>Technical detail &#9660;</span></div>`;
   document.getElementById("layers-body").innerHTML=h;
 }
 
@@ -416,6 +549,19 @@ function renderLenses(){
         </div>`;
   });
   document.getElementById("lenses-body").innerHTML=h;
+}
+
+function renderGenerality(){
+  let h="";
+  GENERALITY.forEach(g=>{
+    h+=`<div class="scope-chip" data-id="${g.id}"
+             style="background:${g.bg};border-color:${g.border}66"
+             title="${g.sub}"
+             onclick="openModal('${g.id}')">
+          <span class="scope-name" style="color:${g.text}">${g.label}</span>
+        </div>`;
+  });
+  document.getElementById("scope-body").innerHTML=h;
 }
 
 function renderLifecycle(){
@@ -497,6 +643,7 @@ function openModal(id){
   let l=LENSES.find(x=>x.id===id);
   let type="lens";
   if(!l){l=LAYERS.find(x=>x.id===id);type="layer";}
+  if(!l){l=GENERALITY.find(x=>x.id===id);type="generality";}
   if(!l)return;
   const titleEl = document.getElementById("modal-name");
   titleEl.textContent = l.label || "";
@@ -506,8 +653,8 @@ function openModal(id){
   hd.style.background=l.bg||"#F8FAFC";
   hd.style.borderBottomColor=(l.border||"#E2E8F0")+"44";
   document.getElementById("modal-box").style.borderColor=l.border||"#E2E8F0";
-  document.getElementById("t-label").textContent = type==="lens" ? "Theories & Frameworks" : "Notes & Resources";
-  const items = l.theories || l.notes || [];
+  document.getElementById("t-label").textContent = type==="lens" ? "Theories & Frameworks" : (type==="generality" ? "Illustrative Examples" : "Notes & Resources");
+  const items = l.theories || l.notes || l.examples || [];
   document.getElementById("t-list").innerHTML = items.map(t=>
     `<div class="t-card">
        <div class="t-row">
@@ -539,8 +686,17 @@ function hideIntroModal(){
   if(el) el.classList.remove('open');
 }
 
+function showExamplesModal(){
+  const el = document.getElementById('examples-overlay');
+  if(el) el.classList.add('open');
+}
+function hideExamplesModal(){
+  const el = document.getElementById('examples-overlay');
+  if(el) el.classList.remove('open');
+}
+
 document.addEventListener("keydown",e=>{
-  if(e.key==="Escape"){ closeModal(); hideIntroModal(); }
+  if(e.key==="Escape"){ closeModal(); hideIntroModal(); hideExamplesModal(); }
 });
 
 document.addEventListener('DOMContentLoaded',()=>{
@@ -551,6 +707,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 renderLayers();
 renderLenses();
+renderGenerality();
 renderLifecycle();
 </script>
 </body>
