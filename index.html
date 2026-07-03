@@ -660,8 +660,9 @@ function openModal(id){
            <div class="t-author">${t.author || ""}</div>
            <div class="t-desc">${t.desc}</div>
          </div>
-         <a href="${t.url}" target="_blank" rel="noopener noreferrer"
-            class="t-link" style="background:${l.text||"#202845"}">${t.url&&t.url!="#"?"Open &#8599;":""}</a>
+         ${type!=="generality"&&t.url&&t.url!="#"?
+           `<a href="${t.url}" target="_blank" rel="noopener noreferrer"
+               class="t-link" style="background:${l.text||"#202845"}">Open &#8599;</a>`:""}
        </div>
      </div>`
   ).join("");
