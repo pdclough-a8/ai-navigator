@@ -21,10 +21,10 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 .a8-logo{height:26px;}
 .header-right{display:flex;align-items:center;gap:14px;}
 .about-btn{display:flex;align-items:center;justify-content:center;
-  width:24px;height:24px;border-radius:50%;background:none;
+  padding:4px 10px;border-radius:12px;background:none;
   border:1.5px solid var(--gray);color:var(--gray);cursor:pointer;
-  font-family:Georgia,serif;font-style:italic;font-weight:700;font-size:13px;
-  line-height:1;flex-shrink:0;transition:all .15s;}
+  font-weight:700;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;
+  line-height:1;flex-shrink:0;white-space:nowrap;transition:all .15s;}
 .about-btn:hover{border-color:var(--navy);color:var(--navy);}
 .scope-strip .about-btn{margin-left:auto;}
 .main{padding:20px 32px 32px;max-width:1400px;margin:0 auto;}
@@ -177,7 +177,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
     <div class="scope-strip">
       <span class="scope-strip-label">Scope</span>
       <div class="scope-row" id="scope-body"></div>
-      <button id="about-btn" class="about-btn" onclick="showAboutModal()" aria-label="About" title="About">i</button>
+      <button id="about-btn" class="about-btn" onclick="showAboutModal()" aria-label="About" title="About">About</button>
     </div>
   </div>
 
