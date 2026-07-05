@@ -304,7 +304,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
       <div class="modal-hd-row">
         <div>
           <div class="modal-name">Worked Examples</div>
-          <div class="modal-q" style="color:#fff;">Four systems, characterised across the same six layers &ndash; plus their scope tag</div>
+          <div class="modal-q" style="color:#fff;">Four systems, characterised across the six layers &ndash; plus their scope tag</div>
         </div>
         <button class="modal-close-btn" onclick="hideExamplesModal()">&#10005;</button>
       </div>
@@ -381,7 +381,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 
 <script>
 const LAYERS=[
-  {id:"capabilities",   label:"Capabilities",        desc:"<b>What the AI does</b>: translate, classify, generate, predict, recommend",                                                       bg:"#1a3a6e", notes:[{name:"Capabilities",author:"Wikipedia",desc:"Define the system's core outputs, supported modalities, and the user problems it is designed to solve. Clarify expected capabilities versus limitations so stakeholders can align value, trust, and scope.",url:"https://aidesignkit.github.io/"}]},
+  {id:"capabilities",   label:"Capabilities",        desc:"<b>What the AI does</b>: translate, classify, generate, predict, recommend",                                                       bg:"#1a3a6e", notes:[{name:"Capabilities",author:"AI Design Kit",desc:"Define the system's core outputs, supported modalities, and the user problems it is designed to solve. Clarify expected capabilities versus limitations so stakeholders can align value, trust, and scope.",url:"https://aidesignkit.github.io/"}]},
   {id:"operational",    label:"Operational Mode",     desc:"<b>How the system acts in context</b>: degree of autonomy and how it fits into human workflows &ndash; from passive tool to active agent", bg:"#1c3e78", notes:[{name:"Operational mode",author:"Wikipedia",desc:"Describe whether the system is advisory, semi-autonomous, or fully autonomous, and how it interacts with people and existing processes. Highlight handoff points, intervention paths, and escalation behaviour.",url:"https://en.wikipedia.org/wiki/Autonomy_(artificial_intelligence)"}]},
   {id:"paradigm",       label:"Paradigm",             desc:"<b>The fundamental approach</b>: generative AI, predictive ML, symbolic, hybrid",                                                  bg:"#1a3a74", notes:[{name:"Paradigm",author:"Wikipedia",desc:"Capture the model family and reasoning style being used: generative, predictive, symbolic, or hybrid. Explain how that choice affects explainability, confidence, and expected failure modes.",url:"https://en.wikipedia.org/wiki/Machine_learning"}]},
   {id:"learning",       label:"Learning Approach",    desc:"<b>How knowledge is acquired</b>: supervised, unsupervised, reinforcement, self-supervised",                                       bg:"#173570", notes:[{name:"Learning approach",author:"Wikipedia",desc:"Summarise how the system learns from data or feedback, including whether training is supervised, unsupervised, reinforcement, or self-supervised, and what retraining cycle is expected.",url:"https://en.wikipedia.org/wiki/Supervised_learning"}]},
@@ -390,7 +390,7 @@ const LAYERS=[
 ];
 
 const GENERALITY=[
-  {id:"narrow",label:"Narrow (ANI)",sub:"One task, tightly bounded",
+  {id:"narrow",label:"Artificial Narrow Intelligence (ANI)",sub:"One task, tightly bounded",
    q:"Built and optimised for a specific task or a tightly bounded family of tasks. Performance and skill do not transfer outside that scope &ndash; a fraud model can't write an email, however good it is at fraud.",
    bg:"#F8FAFC",border:"#6F8093",text:"#334155",
    examples:[
@@ -398,14 +398,14 @@ const GENERALITY=[
     {name:"Credit scoring / fraud detection",desc:"Classifies a transaction or application against one learned outcome."},
     {name:"Spam filters, image classifiers, translation engines",desc:"Each solves one well-defined problem and nothing else."}
    ]},
-  {id:"general_purpose",label:"General-purpose",sub:"Many tasks, one system",
+  {id:"general_purpose",label:"General-purpose AI",sub:"Many tasks, one system",
    q:"A single model or system that performs many different tasks across domains &ndash; via prompting, fine-tuning or in-context learning &ndash; without being rebuilt for each new task. Often called a &lsquo;foundation model&rsquo;.",
    bg:"#EFF6FF",border:"#0051AB",text:"#003D82",
    examples:[
     {name:"ChatGPT, Claude, Gemini",desc:"One model handles writing, coding, analysis, translation, tutoring, etc."},
     {name:"Multimodal foundation models",desc:"e.g. GPT-4o &ndash; broad competence across text, image and audio."}
    ]},
-  {id:"agi",label:"(Artificial) General Intelligence",sub:"Hypothetical &ndash; does not exist yet",
+  {id:"agi",label:"Artificial General Intelligence (AGI)",sub:"Hypothetical &ndash; does not exist yet",
    q:"A hypothetical system with human-level (or beyond) cognitive flexibility: able to learn, transfer and reason across virtually any domain autonomously, not just the domains it was trained or prompted on. No current system meets this bar &ndash; the term is frequently used more loosely (and inflated) in marketing than this definition allows.",
    bg:"#FDF4FF",border:"#A21CAF",text:"#86198F",
    examples:[
