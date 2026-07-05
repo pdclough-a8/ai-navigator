@@ -330,11 +330,11 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
               <td>Perceive environment, predict trajectories, plan actions</td>
             </tr>
             <tr>
-              <td class="row-label" style="background:#1c3e78;">Operational Mode</td>
-              <td>Conversational assistant &rarr; increasingly agentic (tool use)</td>
-              <td>Passive, embedded, largely invisible suggestion</td>
-              <td>Decision support, often auto-approve/decline within thresholds</td>
-              <td>Highly autonomous, real-time closed-loop control</td>
+              <td class="row-label" style="background:#1c3e78;">Deployment Context</td>
+              <td>Cloud SaaS, public-facing chat/API product, real-time request-response</td>
+              <td>Cloud backend, embedded invisibly within the host app, real-time on page load</td>
+              <td>Internal back-office system, embedded in decisioning workflow, real-time or batch scoring</td>
+              <td>On-device/edge, embedded in vehicle hardware, real-time closed-loop control</td>
             </tr>
             <tr>
               <td class="row-label" style="background:#1a3a74;">Paradigm</td>
@@ -382,7 +382,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 <script>
 const LAYERS=[
   {id:"capabilities",   label:"Capabilities",        desc:"<b>What the AI does</b>: translate, classify, generate, predict, recommend",                                                       bg:"#1a3a6e", notes:[{name:"Capabilities",author:"AI Design Kit",desc:"Define the system's core outputs, supported modalities, and the user problems it is designed to solve. Clarify expected capabilities versus limitations so stakeholders can align value, trust, and scope.",url:"https://aidesignkit.github.io/"}]},
-  {id:"operational",    label:"Operational Mode",     desc:"<b>How the system acts in context</b>: degree of autonomy and how it fits into human workflows &ndash; from passive tool to active agent", bg:"#1c3e78", notes:[{name:"Operational mode",author:"Wikipedia",desc:"Describe whether the system is advisory, semi-autonomous, or fully autonomous, and how it interacts with people and existing processes. Highlight handoff points, intervention paths, and escalation behaviour.",url:"https://en.wikipedia.org/wiki/Autonomy_(artificial_intelligence)"}]},
+  {id:"operational",    label:"Deployment Context",   desc:"<b>Where and how the system is deployed</b>: environment (cloud, edge, on-device), exposure (internal tool, embedded component, public-facing product), and interaction pattern (real-time, batch, API-driven)", bg:"#1c3e78", notes:[{name:"Deployment context",author:"Wikipedia",desc:"Describe the runtime environment, how the system is exposed to its users or host application, and whether it serves requests in real time, in batches, or asynchronously. Note integration points and what the system depends on to run.",url:"https://en.wikipedia.org/wiki/MLOps"}]},
   {id:"paradigm",       label:"Paradigm",             desc:"<b>The fundamental approach</b>: generative AI, predictive ML, symbolic, hybrid",                                                  bg:"#1a3a74", notes:[{name:"Paradigm",author:"Wikipedia",desc:"Capture the model family and reasoning style being used: generative, predictive, symbolic, or hybrid. Explain how that choice affects explainability, confidence, and expected failure modes.",url:"https://en.wikipedia.org/wiki/Machine_learning"}]},
   {id:"learning",       label:"Learning Approach",    desc:"<b>How knowledge is acquired</b>: supervised, unsupervised, reinforcement, self-supervised",                                       bg:"#173570", notes:[{name:"Learning approach",author:"Wikipedia",desc:"Summarise how the system learns from data or feedback, including whether training is supervised, unsupervised, reinforcement, or self-supervised, and what retraining cycle is expected.",url:"https://en.wikipedia.org/wiki/Supervised_learning"}]},
   {id:"training_data",  label:"Training Data",        desc:"<b>What the system learned from</b>: source, modality, scale, domain scope, and quality of the training corpus",                  bg:"#142e68", notes:[{name:"Training data",author:"Wikipedia",desc:"Summarise data provenance, coverage, quality and bias risk. Note whether data is curated, synthetic, third-party or user-generated, and how freshness is maintained.",url:"https://en.wikipedia.org/wiki/Training_data"}]},
