@@ -50,8 +50,6 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 .layer-item{position:relative;padding:10px 14px;cursor:pointer;transition:all .15s;
   border-bottom:1px solid rgba(255,255,255,.07);}
 .layer-item:hover{filter:brightness(1.12);}
-.layer-item.selected{outline:2.5px solid var(--orange)!important;
-  outline-offset:-2px;filter:brightness(1.2);}
 .ln{font-weight:700;font-size:12.5px;color:#fff;}
 .ld{font-size:10.5px;color:rgba(255,255,255,.58);margin-top:2px;}
 .layer-footer{display:flex;justify-content:space-between;padding:5px 14px;
@@ -172,8 +170,8 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
       <button id="intro-btn" onclick="showIntroModal()" aria-label="Overview" style="padding:5px 9px;border-radius:6px;background:var(--navy);color:#fff;border:none;font-weight:700;cursor:pointer;font-size:11px;line-height:1.2;align-self:center;">Overview</button>
       <button id="examples-btn" onclick="showExamplesModal()" aria-label="Worked Examples" style="padding:5px 9px;border-radius:6px;background:#fff;color:var(--navy);border:1.5px solid var(--navy);font-weight:700;cursor:pointer;font-size:11px;line-height:1.2;align-self:center;">Worked Examples</button>
     </div>
-    <p class="page-subtitle" style="margin-top:8px;">Click a <strong>layer</strong> or <strong>lens</strong> to see its lifecycle relevance.
-      Click the <strong style="font-family:Georgia,serif;font-style:italic">i</strong> on any lens for theories &amp; resources.</p>
+    <p class="page-subtitle" style="margin-top:8px;">Click a <strong>lens</strong> to see its lifecycle relevance.
+      Click a <strong>layer</strong>, or the <strong style="font-family:Georgia,serif;font-style:italic">i</strong> on any lens, for its definition &amp; resources.</p>
     <div class="scope-strip">
       <span class="scope-strip-label">Scope</span>
       <div class="scope-row" id="scope-body"></div>
@@ -517,15 +515,6 @@ const LENS_REL={
   assurance:     {define:2,data:2,build:2,evaluate:3,deploy:3,operate:3}
 };
 
-const LAYER_REL={
-  capabilities:  {define:3,data:1,build:2,evaluate:3,deploy:3,operate:3},
-  operational:   {define:2,data:1,build:2,evaluate:2,deploy:3,operate:3},
-  paradigm:      {define:3,data:1,build:3,evaluate:2,deploy:1,operate:1},
-  learning:      {define:1,data:3,build:3,evaluate:2,deploy:1,operate:2},
-  training_data: {define:1,data:3,build:3,evaluate:2,deploy:1,operate:2},
-  algorithm:     {define:1,data:2,build:3,evaluate:2,deploy:1,operate:1}
-};
-
 const NOTES={
   business:      {define:"Define value proposition & success metrics",evaluate:"Validate performance against KPIs",deploy:"Measure actual ROI at release",operate:"Ongoing value tracking & course correction"},
   ethics:        {define:"Is this the right thing to build? Who could be harmed?",data:"Bias, consent & representation in data sources",build:"Encoding fairness constraints in model design",evaluate:"Fairness testing, red-teaming & impact assessment",deploy:"Fair access & responsible release communication",operate:"Monitor for emergent harms & distributional shift"},
@@ -539,13 +528,13 @@ const NOTES={
   assurance:     {define:"Specify what claims will need to be evidenced",data:"Data quality & provenance evidence",build:"Design for testability & audit trail creation",evaluate:"Testing evidence, validation & certification",deploy:"Conformance assessment & formal sign-off",operate:"Continuous assurance monitoring & re-evaluation"}
 };
 
-let selLens=null,selLayer=null;
+let selLens=null;
 
 function renderLayers(){
   let h="";
   LAYERS.forEach(l=>{
     h+=`<div class="layer-item" data-id="${l.id}" style="background:${l.bg}"
-            onclick="pickLayer('${l.id}')">
+            onclick="openModal('${l.id}')">
           <div class="ln">${l.label}</div>
           <div class="ld">${l.desc}</div>
           <button type="button" class="info-btn"
@@ -607,24 +596,11 @@ function renderLifecycle(){
 
 function pickLens(id){
   selLens=(selLens===id)?null:id;
-  selLayer=null;
-  refreshStyles();
-  refreshLifecycle();
-}
-
-function pickLayer(id){
-  selLayer=(selLayer===id)?null:id;
-  selLens=null;
   refreshStyles();
   refreshLifecycle();
 }
 
 function refreshStyles(){
-  document.querySelectorAll(".layer-item").forEach(el=>{
-    const l=LAYERS.find(x=>x.id===el.dataset.id);
-    if(selLayer===el.dataset.id){el.style.background="#FF5C34";el.classList.add("selected");}
-    else{el.style.background=l.bg;el.classList.remove("selected");}
-  });
   document.querySelectorAll(".lens-card").forEach(el=>{
     const l=LENSES.find(x=>x.id===el.dataset.id);
     if(selLens===el.dataset.id){
@@ -638,12 +614,12 @@ function refreshStyles(){
 }
 
 function refreshLifecycle(){
-  const rel=selLens?LENS_REL[selLens]:selLayer?LAYER_REL[selLayer]:null;
+  const rel=selLens?LENS_REL[selLens]:null;
   const notes=selLens?(NOTES[selLens]||{}):{};
-  const item=selLens?LENSES.find(l=>l.id===selLens):selLayer?LAYERS.find(l=>l.id===selLayer):null;
+  const item=selLens?LENSES.find(l=>l.id===selLens):null;
   const sub=document.getElementById("lc-subtitle");
   sub.innerHTML=item?`<strong>${item.label}</strong> &ndash; relevance at each lifecycle stage`
-    :"Select a layer or lens above to see its lifecycle relevance";
+    :"Select a lens above to see its lifecycle relevance";
   document.getElementById("lc-legend").style.display=rel?"flex":"none";
   document.querySelectorAll(".stage-card").forEach(card=>{
     const sid=card.dataset.id;
