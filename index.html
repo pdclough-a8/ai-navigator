@@ -26,9 +26,10 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
   font-weight:700;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;
   line-height:1;flex-shrink:0;white-space:nowrap;transition:all .15s;}
 .about-btn:hover{border-color:var(--navy);color:var(--navy);}
-.scope-strip .about-btn{margin-left:auto;}
+.header-right .about-btn{margin-right:4px;}
 .main{padding:20px 32px 32px;max-width:1400px;margin:0 auto;}
-.page-intro{margin-bottom:16px;}
+.page-intro{margin-bottom:16px;box-sizing:border-box;width:100%;
+  background:#EAEFF4;border:1.5px solid #C7D2DE;border-radius:12px;padding:14px 16px;}
 .page-headline{font-size:13px;font-weight:700;color:var(--black);
   letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;}
 .page-subtitle{font-size:11.5px;color:var(--gray);}
@@ -39,23 +40,26 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 .ph-title{font-weight:700;font-size:12px;color:var(--dark);letter-spacing:.04em;}
 .ph-sub{font-size:10.5px;color:var(--gray);margin-top:2px;}
 .ph-sub em{font-style:italic;}
-.top-row{display:flex;gap:10px;margin-bottom:10px;align-items:stretch;}
-.layers-col{flex:0 0 40%;}
+.top-row{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;box-sizing:border-box;width:100%;}
+.layers-col{flex:0 0 40%;min-width:0;display:flex;flex-direction:column;gap:8px;}
 .arrow-col{display:flex;flex-direction:column;align-items:center;
-  justify-content:center;flex:0 0 28px;gap:4px;}
+  justify-content:center;flex:0 0 28px;gap:4px;padding-top:26px;}
 .arrow-label{font-size:9px;font-weight:700;color:var(--gray);
   text-align:center;line-height:1.3;}
 .arrow-icon{font-size:18px;color:#CBD5E1;}
-.lenses-col{flex:1;}
-.layer-item{position:relative;padding:10px 14px;cursor:pointer;transition:all .15s;
+.lenses-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px;}
+.dim-group-title{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--navy);}
+.dim-group{border:1.5px solid #C7D2DE;border-radius:12px;padding:12px;display:flex;
+  flex-direction:column;gap:8px;background:#EAEFF4;}
+.layer-item{position:relative;padding:10px 14px;transition:all .15s;
   border-bottom:1px solid rgba(255,255,255,.07);}
-.layer-item:hover{filter:brightness(1.12);}
 .ln{font-weight:700;font-size:12.5px;color:#fff;}
 .ld{font-size:10.5px;color:rgba(255,255,255,.58);margin-top:2px;}
 .layer-footer{display:flex;justify-content:space-between;padding:5px 14px;
   background:#F8FAFC;border-top:1px solid #E2E8F0;}
 .layer-footer span{font-size:9px;color:var(--gray);}
-.lenses-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:8px;}
+.lenses-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px;padding:8px;}
 .lens-card{padding:9px 28px 9px 11px;border-radius:6px;cursor:pointer;
   transition:all .15s;position:relative;border-style:solid;border-width:1.5px;}
 .lens-card:hover{transform:translateY(-1px);box-shadow:0 2px 10px rgba(0,0,0,.08);}
@@ -71,9 +75,9 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
   font-family:Georgia,serif;font-style:italic;background:transparent;
   transition:opacity .15s;}
 .info-btn:hover{opacity:.7;}
-.scope-strip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-  padding:7px 12px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:7px;margin-top:10px;}
-.scope-strip-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+.scope-strip{display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:8px 12px;background:var(--white);border:1px solid #E2E8F0;border-radius:var(--r);}
+.scope-strip-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   color:var(--gray);flex-shrink:0;}
 .scope-row{display:flex;gap:6px;flex-wrap:wrap;}
 .scope-chip{padding:4px 10px;border-radius:20px;cursor:pointer;
@@ -81,6 +85,11 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 .scope-chip:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.08);}
 .scope-name{font-weight:700;font-size:10.5px;white-space:nowrap;}
 .scope-strip-hint{font-size:9.5px;color:var(--gray);margin-left:auto;}
+.dim-info-btn{width:13px;height:13px;border-radius:50%;border:1px solid var(--gray);
+  font-size:9px;font-weight:700;font-family:Georgia,serif;font-style:italic;
+  display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+  background:transparent;color:var(--gray);flex-shrink:0;padding:0;}
+.dim-info-btn:hover{border-color:var(--navy);color:var(--navy);}
 .modal-box-wide{max-width:960px;}
 .table-scroll{overflow-x:auto;margin-top:4px;}
 .examples-table{width:100%;border-collapse:collapse;font-size:10.8px;min-width:680px;}
@@ -104,13 +113,13 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 .stage-arr{font-size:11px;color:#CBD5E1;margin:18px 2px 0;flex-shrink:0;}
 .stage-card{flex:1;padding:10px 8px;border-radius:7px;text-align:center;
   border:1.5px solid #E2E8F0;background:#fff;transition:all .25s;min-height:88px;}
-.stage-dot{width:7px;height:7px;border-radius:50%;background:#E2E8F0;
-  margin:0 auto 5px;display:none;transition:background .25s;}
+.stage-dots{display:flex;justify-content:center;gap:5px;margin-bottom:5px;height:7px;}
+.stage-dot-lens{width:7px;height:7px;border-radius:50%;background:#E2E8F0;display:none;transition:background .25s;}
 .stage-name{font-weight:700;font-size:11px;color:var(--dark);margin-bottom:3px;}
 .stage-desc{font-size:9.5px;color:var(--gray);line-height:1.35;}
 .stage-note{font-size:9px;line-height:1.3;margin-top:5px;padding:3px 5px;
   background:#FFF0EB;border-radius:4px;text-align:left;color:#C2410C;display:none;}
-.insight-bar{padding:12px 16px;background:var(--navy);border-radius:var(--r);
+.insight-bar{padding:12px 16px;background:var(--navy);border-radius:var(--r);box-sizing:border-box;width:100%;
   font-size:11.5px;color:rgba(255,255,255,.85);line-height:1.75;}
 .insight-bar strong{color:#fff;}
 .insight-bar em{color:#FFAB90;font-style:normal;}
@@ -159,6 +168,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
     <div class="header-title">AI Navigator</div>
   </div>
   <div class="header-right">
+    <button id="about-btn" class="about-btn" onclick="showAboutModal()" aria-label="About" title="About">About</button>
     <img src="data:image/png;base64,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" class="a8-logo" alt="Analytics8">
   </div>
 </header>
@@ -166,27 +176,34 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 <main class="main">
   <div class="page-intro">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:nowrap;">
-      <div class="page-headline" style="margin-bottom:0;">Layers · Lifecycle · Lenses</div>
+      <div class="page-headline" style="margin-bottom:0;">What the system is &middot; How to evaluate it</div>
       <button id="intro-btn" onclick="showIntroModal()" aria-label="Overview" style="padding:5px 9px;border-radius:6px;background:var(--navy);color:#fff;border:none;font-weight:700;cursor:pointer;font-size:11px;line-height:1.2;align-self:center;">Overview</button>
       <button id="examples-btn" onclick="showExamplesModal()" aria-label="Worked Examples" style="padding:5px 9px;border-radius:6px;background:#fff;color:var(--navy);border:1.5px solid var(--navy);font-weight:700;cursor:pointer;font-size:11px;line-height:1.2;align-self:center;">Worked Examples</button>
     </div>
     <p class="page-subtitle" style="margin-top:8px;">Click a <strong>lens</strong> to see its lifecycle relevance.
-      Click a <strong>layer</strong>, or the <strong style="font-family:Georgia,serif;font-style:italic">i</strong> on any lens, for its definition &amp; resources.</p>
-    <div class="scope-strip">
-      <span class="scope-strip-label">Scope</span>
-      <div class="scope-row" id="scope-body"></div>
-      <button id="about-btn" class="about-btn" onclick="showAboutModal()" aria-label="About" title="About">About</button>
-    </div>
+      Click the <strong style="font-family:Georgia,serif;font-style:italic">i</strong> on any card for details.</p>
   </div>
 
   <div class="top-row">
     <div class="layers-col">
-      <div class="panel">
-        <div class="ph">
-          <div class="ph-title">LAYERS</div>
-          <div class="ph-sub">What the AI system <em>is</em> at each level of abstraction (from how it works to what it does)</div>
+      <div class="dim-group-title">What the system is</div>
+      <div class="dim-group">
+        <div class="panel">
+          <div class="ph">
+            <div class="ph-title">LAYERS</div>
+            <div class="ph-sub">What the AI system <em>is</em> at each level of abstraction (from how it works to what it does)</div>
+          </div>
+          <div id="layers-body"></div>
         </div>
-        <div id="layers-body"></div>
+        <div class="scope-strip">
+          <span class="scope-strip-label">Scope</span>
+          <button type="button" class="dim-info-btn" onclick="openDimensionInfo('scope')" aria-label="What is Scope?" title="What is Scope?">i</button>
+          <div class="scope-row" id="scope-body"></div>
+          <span style="width:1px;height:14px;background:#E2E8F0;flex-shrink:0;"></span>
+          <span class="scope-strip-label">Autonomy</span>
+          <button type="button" class="dim-info-btn" onclick="openDimensionInfo('autonomy')" aria-label="What is Autonomy?" title="What is Autonomy?">i</button>
+          <div class="scope-row" id="autonomy-body"></div>
+        </div>
       </div>
     </div>
     <div class="arrow-col">
@@ -194,38 +211,44 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
       <div class="arrow-icon">&#8594;</div>
     </div>
     <div class="lenses-col">
-      <div class="panel" style="height:100%">
-        <div class="ph">
-          <div class="ph-title">LENSES</div>
-          <div class="ph-sub">How you evaluate / think about the system</div>
+      <div class="dim-group-title">How to evaluate it, and when</div>
+      <div class="dim-group">
+        <div class="panel">
+          <div class="ph">
+            <div class="ph-title">LENSES</div>
+            <div class="ph-sub">How you evaluate / think about the system</div>
+          </div>
+          <div class="lenses-grid" id="lenses-body"></div>
         </div>
-        <div class="lenses-grid" id="lenses-body"></div>
+        <div class="lifecycle-section">
+          <div class="lc-header">
+            <div>
+              <div class="lc-title">LIFECYCLE</div>
+              <div class="lc-sub-txt" id="lc-subtitle">Select a lens above to see its lifecycle relevance</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+              <button id="lc-clear" onclick="clearSelection()" type="button"
+                style="display:none;padding:4px 10px;border-radius:12px;background:none;border:1.5px solid var(--gray);
+                color:var(--gray);cursor:pointer;font-weight:700;font-size:9px;letter-spacing:.06em;text-transform:uppercase;">Clear</button>
+              <div class="lc-legend" id="lc-legend">
+                <span style="color:#FF5C34;font-weight:700">&#9679; High</span>
+                <span style="color:#FFAB90;font-weight:700">&#9679; Medium</span>
+                <span style="color:#CBD5E1;font-weight:700">&#9679; Low</span>
+              </div>
+            </div>
+          </div>
+          <div class="lc-body">
+            <div class="stages-row" id="stages-row"></div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="lifecycle-section">
-    <div class="lc-header">
-      <div>
-        <div class="lc-title">LIFECYCLE</div>
-        <div class="lc-sub-txt" id="lc-subtitle">Select a layer or lens above to see its AI lifecycle relevance</div>
-      </div>
-      <div class="lc-legend" id="lc-legend">
-        <span style="color:#FF5C34;font-weight:700">&#9679; High</span>
-        <span style="color:#FFAB90;font-weight:700">&#9679; Medium</span>
-        <span style="color:#CBD5E1;font-weight:700">&#9679; Low</span>
-      </div>
-    </div>
-    <div class="lc-body">
-      <div class="stages-row" id="stages-row"></div>
     </div>
   </div>
 
   <div class="insight-bar">
-    <strong>Three dimensions of AI characterisation:</strong>
-    <strong>Layers</strong> answer <em>what</em> the system is (from how it works to what it does)&nbsp;&middot;&nbsp;
-    <strong>Lifecycle</strong> answers <em>when</em> each concern is most actionable &nbsp;&middot;&nbsp;
-    <strong>Lenses</strong> answer <em>how</em> to evaluate it.
+    <strong>Two dimensions of AI characterisation:</strong>
+    <strong>What the system is</strong> &ndash; Layers, Scope &amp; Autonomy describe the system itself, at increasing levels of abstraction&nbsp;&middot;&nbsp;
+    <strong>How to evaluate it, and when</strong> &ndash; Lenses answer <em>how</em>, Lifecycle answers <em>when</em>.
     Together they form a complete compass for understanding, deploying, and governing AI systems.
   </div>
 </main>
@@ -266,13 +289,19 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
       </div>
     </div>
     <div class="modal-bd">
-      <p>The AI Navigator provides a way of characterising and viewing AI systems from different perspectives to help you better understand AI. The interactive web page maps systems across three interlocking dimensions. Use the bullets below to get started or jump straight into the page.</p>
+      <p>The AI Navigator provides a way of characterising and viewing AI systems from different perspectives to help you better understand AI. The interactive page maps systems across two families of dimensions. Use the bullets below to get started or jump straight into the page.</p>
+      <p style="margin-top:10px;font-weight:700;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);">What the system is</p>
       <ul>
-        <li><strong>Layers</strong> - what the system is (capabilities, data, algorithm) at different levels of abstraction.</li>
-        <li><strong>Lifecycle</strong> - when concerns are most actionable (define, data, build, evaluate, deploy, operate).</li>
-        <li><strong>Lenses</strong> - how to evaluate the system (ethics, security, business value, etc.).</li>
+        <li><strong>Layers</strong> - the system's technical anatomy, from how it works to what it does (capabilities, deployment context, paradigm, learning approach, training data, algorithm).</li>
+        <li><strong>Scope</strong> - how general the underlying intelligence is (narrow, general-purpose, or hypothetical AGI).</li>
+        <li><strong>Autonomy</strong> - how independently the system acts, from human-driven to fully autonomous.</li>
       </ul>
-      <p style="margin-top:8px;">Tip: click the <em>i</em> icons on lenses and layers to open related resources.</p>
+      <p style="margin-top:10px;font-weight:700;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);">How to evaluate it, and when</p>
+      <ul>
+        <li><strong>Lenses</strong> - how to evaluate the system (ethics, security, business value, etc.).</li>
+        <li><strong>Lifecycle</strong> - when each concern is most actionable (define, data, build, evaluate, deploy, operate).</li>
+      </ul>
+      <p style="margin-top:8px;">Tip: click a lens to see its lifecycle relevance, and click the <em>i</em> icon on any card for further details.</p>
     </div>
   </div>
 </div>
@@ -302,7 +331,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
       <div class="modal-hd-row">
         <div>
           <div class="modal-name">Worked Examples</div>
-          <div class="modal-q" style="color:#fff;">Four systems, characterised across the six layers &ndash; plus their scope tag</div>
+          <div class="modal-q" style="color:#fff;">Four systems, characterised across the six layers &ndash; plus their scope and autonomy tags</div>
         </div>
         <button class="modal-close-btn" onclick="hideExamplesModal()">&#10005;</button>
       </div>
@@ -369,10 +398,17 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
               <td>Narrow</td>
               <td>Narrow <span style="font-style:normal;">(generalist driving policies are emerging, but not there yet)</span></td>
             </tr>
+            <tr class="scope-row-tr">
+              <td class="row-label">Autonomy (tag, not a layer)</td>
+              <td>Assisted <span style="font-style:normal;">(agentic tool-use modes shift this toward Supervised/Semi-autonomous)</span></td>
+              <td>Autonomous</td>
+              <td>Semi-autonomous</td>
+              <td>Autonomous <span style="font-style:normal;">(within its operational domain; most deployed systems still keep a safety driver or remote support)</span></td>
+            </tr>
           </tbody>
         </table>
       </div>
-      <p style="font-size:10.5px;color:var(--gray);margin-top:10px;line-height:1.5;">Notice that two systems can share a scope (both Narrow) yet differ completely across every other layer &ndash; and a General-purpose system isn't automatically more autonomous or higher-stakes than a Narrow one. Characterising by dimension, rather than a single label, is the point.</p>
+      <p style="font-size:10.5px;color:var(--gray);margin-top:10px;line-height:1.5;">Notice that two systems can share a scope (both Narrow) yet differ completely across every other layer &ndash; and a General-purpose system isn't automatically more autonomous or higher-stakes than a Narrow one. Notice too that the Recommender and the Self-driving car share the same autonomy tag despite one being low-stakes and the other safety-critical &ndash; autonomy tells you how independently a system acts, not how much is at stake when it does. Characterising by dimension, rather than a single label, is the point.</p>
     </div>
   </div>
 </div>
@@ -380,7 +416,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 <script>
 const LAYERS=[
   {id:"capabilities",   label:"Capabilities",        desc:"<b>What the AI does</b>: translate, classify, generate, predict, recommend",                                                       bg:"#1a3a6e", notes:[{name:"Capabilities",author:"AI Design Kit",desc:"Define the system's core outputs, supported modalities, and the user problems it is designed to solve. Clarify expected capabilities versus limitations so stakeholders can align value, trust, and scope.",url:"https://aidesignkit.github.io/"}]},
-  {id:"operational",    label:"Deployment Context",   desc:"<b>Where and how the system is deployed</b>: environment (cloud, edge, on-device), exposure (internal tool, embedded component, public-facing product), and interaction pattern (real-time, batch, API-driven)", bg:"#1c3e78", notes:[{name:"Deployment context",author:"Wikipedia",desc:"Describe the runtime environment, how the system is exposed to its users or host application, and whether it serves requests in real time, in batches, or asynchronously. Note integration points and what the system depends on to run.",url:"https://en.wikipedia.org/wiki/MLOps"}]},
+  {id:"operational",    label:"Deployment Context",   desc:"<b>Where and how it runs</b>: cloud, edge, on-device; embedded, internal, or public-facing; real-time or batch", bg:"#1c3e78", notes:[{name:"Deployment context",author:"Wikipedia",desc:"Describe the runtime environment, how the system is exposed to its users or host application, and whether it serves requests in real time, in batches, or asynchronously. Note integration points and what the system depends on to run.",url:"https://en.wikipedia.org/wiki/MLOps"}]},
   {id:"paradigm",       label:"Paradigm",             desc:"<b>The fundamental approach</b>: generative AI, predictive ML, symbolic, hybrid",                                                  bg:"#1a3a74", notes:[{name:"Paradigm",author:"Wikipedia",desc:"Capture the model family and reasoning style being used: generative, predictive, symbolic, or hybrid. Explain how that choice affects explainability, confidence, and expected failure modes.",url:"https://en.wikipedia.org/wiki/Machine_learning"}]},
   {id:"learning",       label:"Learning Approach",    desc:"<b>How knowledge is acquired</b>: supervised, unsupervised, reinforcement, self-supervised",                                       bg:"#173570", notes:[{name:"Learning approach",author:"Wikipedia",desc:"Summarise how the system learns from data or feedback, including whether training is supervised, unsupervised, reinforcement, or self-supervised, and what retraining cycle is expected.",url:"https://en.wikipedia.org/wiki/Supervised_learning"}]},
   {id:"training_data",  label:"Training Data",        desc:"<b>What the system learned from</b>: source, modality, scale, domain scope, and quality of the training corpus",                  bg:"#142e68", notes:[{name:"Training data",author:"Wikipedia",desc:"Summarise data provenance, coverage, quality and bias risk. Note whether data is curated, synthetic, third-party or user-generated, and how freshness is maintained.",url:"https://en.wikipedia.org/wiki/Training_data"}]},
@@ -403,12 +439,50 @@ const GENERALITY=[
     {name:"ChatGPT, Claude, Gemini",desc:"One model handles writing, coding, analysis, translation, tutoring, etc."},
     {name:"Multimodal foundation models",desc:"e.g. GPT-4o &ndash; broad competence across text, image and audio."}
    ]},
-  {id:"agi",label:"(Artificial) General Intelligence",sub:"Hypothetical &ndash; does not exist yet",
+  {id:"agi",label:"AGI",sub:"Artificial General Intelligence &ndash; hypothetical, does not exist yet",
    q:"A hypothetical system with human-level (or beyond) cognitive flexibility: able to learn, transfer and reason across virtually any domain autonomously, not just the domains it was trained or prompted on. No current system meets this bar &ndash; the term is frequently used more loosely (and inflated) in marketing than this definition allows.",
    bg:"#FDF4FF",border:"#A21CAF",text:"#86198F",
    examples:[
-    {name:"Why this differs from &lsquo;general-purpose&rsquo;",desc:"The breadth of tasks a model can be prompted to attempt is not the same as human-like autonomous reasoning, transfer and self-directed learning across novel domains."},
+    {name:"Why this differs from &lsquo;general-purpose&rsquo;",desc:"Breadth of tasks a model can be prompted to attempt is not the same as human-like autonomous reasoning, transfer and self-directed learning across novel domains."},
     {name:"Current status",desc:"An open research goal and subject of active debate, not a deployed capability of today's systems."}
+   ]}
+];
+
+const AUTONOMY=[
+  {id:"human_driven",label:"Human-driven",sub:"AI takes no independent action",
+   q:"A person performs the task themselves. AI may surface information to consider, but every decision and action remains fully human-performed &ndash; nothing is done on the person's behalf.",
+   bg:"#F8FAFC",border:"#6F8093",text:"#334155",
+   examples:[
+    {name:"AI-powered search summaries",desc:"Surfaces relevant information; the person still decides and acts on it themselves."},
+    {name:"Spelling &amp; grammar checkers",desc:"Flags possible issues; every correction is applied by the person, one at a time."}
+   ]},
+  {id:"assisted",label:"Assisted",sub:"AI performs part of the task; human executes each output",
+   q:"The AI generates a draft, suggestion, or component of the task, but a human reviews and explicitly approves or carries out every output before it takes effect.",
+   bg:"#EFF6FF",border:"#0051AB",text:"#003D82",
+   examples:[
+    {name:"AI email or document drafting",desc:"Generates a draft; the person edits it and chooses whether to send or publish."},
+    {name:"Code autocomplete (e.g. Copilot suggestions)",desc:"Suggests code line by line; a developer accepts or rejects each suggestion."}
+   ]},
+  {id:"supervised",label:"Supervised",sub:"AI performs the task; human monitors in real time",
+   q:"The AI carries out the task itself, but a human actively monitors execution as it happens and can intervene or override before consequences occur.",
+   bg:"#ECFEFF",border:"#0E7490",text:"#155E63",
+   examples:[
+    {name:"Advanced driver-assistance systems",desc:"Steers and brakes within limits while the driver stays alert, hands ready to retake control."},
+    {name:"AI-assisted support triage",desc:"Drafts and routes responses in real time, with an agent reviewing each one before it sends."}
+   ]},
+  {id:"semi_autonomous",label:"Semi-autonomous",sub:"AI acts independently within limits; periodic check-ins",
+   q:"The AI operates independently for a defined scope or duration without a human present at every step, but checks in periodically or defers to a human at defined decision points rather than continuously.",
+   bg:"#FFF7ED",border:"#C2650B",text:"#7C3A0A",
+   examples:[
+    {name:"Coding agents (e.g. Claude Code, Devin)",desc:"Plans and executes multi-step coding tasks, pausing for review at key checkpoints."},
+    {name:"Automated credit decisioning",desc:"Auto-approves or declines within set thresholds; edge cases escalate to a human underwriter."}
+   ]},
+  {id:"autonomous",label:"Autonomous",sub:"AI acts independently; no required human checkpoint",
+   q:"The AI acts independently with no required human checkpoint before or during action. Human review, if it happens at all, occurs after the fact rather than as a precondition for acting.",
+   bg:"#FFF0EB",border:"#FF5C34",text:"#9A2E12",
+   examples:[
+    {name:"Recommender systems",desc:"Continuously rank and serve items to every user with no per-recommendation human approval."},
+    {name:"Fully self-driving vehicles (SAE Level 4/5)",desc:"Operate without a human driver monitoring or ready to intervene, within their operational domain."}
    ]}
 ];
 
@@ -515,6 +589,15 @@ const LENS_REL={
   assurance:     {define:2,data:2,build:2,evaluate:3,deploy:3,operate:3}
 };
 
+const LAYER_REL={
+  capabilities:  {define:3,data:1,build:2,evaluate:3,deploy:3,operate:3},
+  operational:   {define:2,data:1,build:2,evaluate:2,deploy:3,operate:3},
+  paradigm:      {define:3,data:1,build:3,evaluate:2,deploy:1,operate:1},
+  learning:      {define:1,data:3,build:3,evaluate:2,deploy:1,operate:2},
+  training_data: {define:1,data:3,build:3,evaluate:2,deploy:1,operate:2},
+  algorithm:     {define:1,data:2,build:3,evaluate:2,deploy:1,operate:1}
+};
+
 const NOTES={
   business:      {define:"Define value proposition & success metrics",evaluate:"Validate performance against KPIs",deploy:"Measure actual ROI at release",operate:"Ongoing value tracking & course correction"},
   ethics:        {define:"Is this the right thing to build? Who could be harmed?",data:"Bias, consent & representation in data sources",build:"Encoding fairness constraints in model design",evaluate:"Fairness testing, red-teaming & impact assessment",deploy:"Fair access & responsible release communication",operate:"Monitor for emergent harms & distributional shift"},
@@ -533,8 +616,7 @@ let selLens=null;
 function renderLayers(){
   let h="";
   LAYERS.forEach(l=>{
-    h+=`<div class="layer-item" data-id="${l.id}" style="background:${l.bg}"
-            onclick="openModal('${l.id}')">
+    h+=`<div class="layer-item" data-id="${l.id}" style="background:${l.bg}">
           <div class="ln">${l.label}</div>
           <div class="ld">${l.desc}</div>
           <button type="button" class="info-btn"
@@ -578,12 +660,27 @@ function renderGenerality(){
   document.getElementById("scope-body").innerHTML=h;
 }
 
+function renderAutonomy(){
+  let h="";
+  AUTONOMY.forEach(a=>{
+    h+=`<div class="scope-chip" data-id="${a.id}"
+             style="background:${a.bg};border-color:${a.border}66"
+             title="${a.sub}"
+             onclick="openModal('${a.id}')">
+          <span class="scope-name" style="color:${a.text}">${a.label}</span>
+        </div>`;
+  });
+  document.getElementById("autonomy-body").innerHTML=h;
+}
+
 function renderLifecycle(){
   let h="";
   LIFECYCLE.forEach((s,i)=>{
     h+=`<div class="stage-wrap">
           <div class="stage-card" data-id="${s.id}">
-            <div class="stage-dot"></div>
+            <div class="stage-dots">
+              <span class="stage-dot-lens" title="Lens relevance"></span>
+            </div>
             <div class="stage-name">${s.label}</div>
             <div class="stage-desc">${s.desc}</div>
             <div class="stage-note"></div>
@@ -596,6 +693,12 @@ function renderLifecycle(){
 
 function pickLens(id){
   selLens=(selLens===id)?null:id;
+  refreshStyles();
+  refreshLifecycle();
+}
+
+function clearSelection(){
+  selLens=null;
   refreshStyles();
   refreshLifecycle();
 }
@@ -613,31 +716,57 @@ function refreshStyles(){
   });
 }
 
+function relColor(r){
+  if(r===3)return{border:"#FF5C34",bg:"#FFF0EB",opacity:"1",dot:"#FF5C34"};
+  if(r===2)return{border:"#FFAB90",bg:"#FFF7F4",opacity:"0.85",dot:"#FFAB90"};
+  return{border:"#E2E8F0",bg:"#FAFAFA",opacity:"0.4",dot:"#E2E8F0"};
+}
+
 function refreshLifecycle(){
-  const rel=selLens?LENS_REL[selLens]:null;
+  const lensItem=selLens?LENSES.find(l=>l.id===selLens):null;
   const notes=selLens?(NOTES[selLens]||{}):{};
-  const item=selLens?LENSES.find(l=>l.id===selLens):null;
   const sub=document.getElementById("lc-subtitle");
-  sub.innerHTML=item?`<strong>${item.label}</strong> &ndash; relevance at each lifecycle stage`
+  sub.innerHTML=lensItem?`<strong>${lensItem.label}</strong> &ndash; relevance at each lifecycle stage`
     :"Select a lens above to see its lifecycle relevance";
-  document.getElementById("lc-legend").style.display=rel?"flex":"none";
+  document.getElementById("lc-legend").style.display=lensItem?"flex":"none";
+  document.getElementById("lc-clear").style.display=lensItem?"inline-block":"none";
   document.querySelectorAll(".stage-card").forEach(card=>{
     const sid=card.dataset.id;
-    const dot=card.querySelector(".stage-dot");
+    const dotLens=card.querySelector(".stage-dot-lens");
     const note=card.querySelector(".stage-note");
-    if(rel){
-      const r=rel[sid];
-      dot.style.display="block";
-      if(r===3){card.style.borderColor="#FF5C34";card.style.background="#FFF0EB";card.style.opacity="1";dot.style.background="#FF5C34";}
-      else if(r===2){card.style.borderColor="#FFAB90";card.style.background="#FFF7F4";card.style.opacity="0.85";dot.style.background="#FFAB90";}
-      else{card.style.borderColor="#E2E8F0";card.style.background="#FAFAFA";card.style.opacity="0.4";dot.style.background="#E2E8F0";}
-      if(r>=2&&notes[sid]){note.textContent=notes[sid];note.style.display="block";}
-      else{note.style.display="none";}
-    } else {
-      card.style.borderColor="#E2E8F0";card.style.background="#fff";
-      card.style.opacity="1";dot.style.display="none";note.style.display="none";
+    const nr=lensItem?LENS_REL[selLens][sid]:null;
+    if(nr==null){
+      card.style.borderColor="#E2E8F0";card.style.background="#fff";card.style.opacity="1";
+      dotLens.style.display="none";note.style.display="none";
+      return;
     }
+    const c=relColor(nr);
+    card.style.borderColor=c.border;card.style.background=c.bg;card.style.opacity=c.opacity;
+    dotLens.style.display="inline-block";dotLens.style.background=c.dot;
+    if(nr>=2&&notes[sid]){note.textContent=notes[sid];note.style.display="block";}
+    else{note.style.display="none";}
   });
+}
+
+const DIMENSION_INFO={
+  scope:{label:"Scope",q:"How broad or general the underlying intelligence is &ndash; whether the system is built for one task, many tasks across domains, or (hypothetically) any task at all. This is a fact about the system's cognitive flexibility, not about how much it does within its domain or how independently it acts."},
+  autonomy:{label:"Autonomy",q:"How independently the system acts once invoked &ndash; from producing output a human must review and approve, to acting entirely on its own with no required checkpoint. This is independent of how broad or narrow the system's underlying intelligence is."}
+};
+
+function openDimensionInfo(id){
+  const d=DIMENSION_INFO[id];
+  if(!d)return;
+  const titleEl=document.getElementById("modal-name");
+  titleEl.textContent=d.label;
+  titleEl.style.color="#fff";
+  document.getElementById("modal-q").innerHTML=d.q;
+  const hd=document.getElementById("modal-hd");
+  hd.style.background="var(--navy)";
+  hd.style.borderBottomColor="transparent";
+  document.getElementById("modal-box").style.borderColor="var(--navy)";
+  document.getElementById("t-label").textContent="";
+  document.getElementById("t-list").innerHTML="";
+  document.getElementById("modal-overlay").classList.add("open");
 }
 
 function openModal(id){
@@ -645,6 +774,7 @@ function openModal(id){
   let type="lens";
   if(!l){l=LAYERS.find(x=>x.id===id);type="layer";}
   if(!l){l=GENERALITY.find(x=>x.id===id);type="generality";}
+  if(!l){l=AUTONOMY.find(x=>x.id===id);type="autonomy";}
   if(!l)return;
   const titleEl = document.getElementById("modal-name");
   titleEl.textContent = l.label || "";
@@ -654,7 +784,8 @@ function openModal(id){
   hd.style.background=l.bg||"#F8FAFC";
   hd.style.borderBottomColor=(l.border||"#E2E8F0")+"44";
   document.getElementById("modal-box").style.borderColor=l.border||"#E2E8F0";
-  document.getElementById("t-label").textContent = type==="lens" ? "Theories & Frameworks" : (type==="generality" ? "Illustrative Examples" : "Notes & Resources");
+  const isExampleType = type==="generality"||type==="autonomy";
+  document.getElementById("t-label").textContent = type==="lens" ? "Theories & Frameworks" : (isExampleType ? "Illustrative Examples" : "Notes & Resources");
   const items = l.theories || l.notes || l.examples || [];
   document.getElementById("t-list").innerHTML = items.map(t=>
     `<div class="t-card">
@@ -664,7 +795,7 @@ function openModal(id){
            <div class="t-author">${t.author || ""}</div>
            <div class="t-desc">${t.desc}</div>
          </div>
-         ${type!=="generality"&&t.url&&t.url!="#"?
+         ${!isExampleType&&t.url&&t.url!="#"?
            `<a href="${t.url}" target="_blank" rel="noopener noreferrer"
                class="t-link" style="background:${l.text||"#202845"}">Open &#8599;</a>`:""}
        </div>
@@ -710,6 +841,7 @@ document.addEventListener("keydown",e=>{
 renderLayers();
 renderLenses();
 renderGenerality();
+renderAutonomy();
 renderLifecycle();
 </script>
 </body>
