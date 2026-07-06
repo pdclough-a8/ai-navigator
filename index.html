@@ -75,8 +75,9 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
   font-family:Georgia,serif;font-style:italic;background:transparent;
   transition:opacity .15s;}
 .info-btn:hover{opacity:.7;}
-.scope-strip{display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+.scope-strip{display:flex;flex-direction:column;gap:6px;
   padding:8px 12px;background:var(--white);border:1px solid #E2E8F0;border-radius:var(--r);}
+.scope-strip-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .scope-strip-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   color:var(--gray);flex-shrink:0;}
 .scope-row{display:flex;gap:6px;flex-wrap:wrap;}
@@ -196,13 +197,16 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
           <div id="layers-body"></div>
         </div>
         <div class="scope-strip">
-          <span class="scope-strip-label">Scope</span>
-          <button type="button" class="dim-info-btn" onclick="openDimensionInfo('scope')" aria-label="What is Scope?" title="What is Scope?">i</button>
-          <div class="scope-row" id="scope-body"></div>
-          <span style="width:1px;height:14px;background:#E2E8F0;flex-shrink:0;"></span>
-          <span class="scope-strip-label">Autonomy</span>
-          <button type="button" class="dim-info-btn" onclick="openDimensionInfo('autonomy')" aria-label="What is Autonomy?" title="What is Autonomy?">i</button>
-          <div class="scope-row" id="autonomy-body"></div>
+          <div class="scope-strip-row">
+            <span class="scope-strip-label">Scope</span>
+            <button type="button" class="dim-info-btn" onclick="openDimensionInfo('scope')" aria-label="What is Scope?" title="What is Scope?">i</button>
+            <div class="scope-row" id="scope-body"></div>
+          </div>
+          <div class="scope-strip-row">
+            <span class="scope-strip-label">Autonomy</span>
+            <button type="button" class="dim-info-btn" onclick="openDimensionInfo('autonomy')" aria-label="What is Autonomy?" title="What is Autonomy?">i</button>
+            <div class="scope-row" id="autonomy-body"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -758,12 +762,12 @@ function openDimensionInfo(id){
   if(!d)return;
   const titleEl=document.getElementById("modal-name");
   titleEl.textContent=d.label;
-  titleEl.style.color="#fff";
+  titleEl.style.color="var(--dark)";
   document.getElementById("modal-q").innerHTML=d.q;
   const hd=document.getElementById("modal-hd");
-  hd.style.background="var(--navy)";
-  hd.style.borderBottomColor="transparent";
-  document.getElementById("modal-box").style.borderColor="var(--navy)";
+  hd.style.background="#fff";
+  hd.style.borderBottomColor="#E2E8F0";
+  document.getElementById("modal-box").style.borderColor="#E2E8F0";
   document.getElementById("t-label").textContent="";
   document.getElementById("t-list").innerHTML="";
   document.getElementById("modal-overlay").classList.add("open");
@@ -776,15 +780,22 @@ function openModal(id){
   if(!l){l=GENERALITY.find(x=>x.id===id);type="generality";}
   if(!l){l=AUTONOMY.find(x=>x.id===id);type="autonomy";}
   if(!l)return;
+  const isExampleType = type==="generality"||type==="autonomy";
   const titleEl = document.getElementById("modal-name");
   titleEl.textContent = l.label || "";
-  titleEl.style.color = "#fff";
-  document.getElementById("modal-q").innerHTML=l.q||"";
   const hd=document.getElementById("modal-hd");
-  hd.style.background=l.bg||"#F8FAFC";
-  hd.style.borderBottomColor=(l.border||"#E2E8F0")+"44";
-  document.getElementById("modal-box").style.borderColor=l.border||"#E2E8F0";
-  const isExampleType = type==="generality"||type==="autonomy";
+  if(isExampleType){
+    titleEl.style.color="var(--dark)";
+    hd.style.background="#fff";
+    hd.style.borderBottomColor="#E2E8F0";
+    document.getElementById("modal-box").style.borderColor=l.border||"#E2E8F0";
+  } else {
+    titleEl.style.color = "#fff";
+    hd.style.background=l.bg||"#F8FAFC";
+    hd.style.borderBottomColor=(l.border||"#E2E8F0")+"44";
+    document.getElementById("modal-box").style.borderColor=l.border||"#E2E8F0";
+  }
+  document.getElementById("modal-q").innerHTML=l.q||"";
   document.getElementById("t-label").textContent = type==="lens" ? "Theories & Frameworks" : (isExampleType ? "Illustrative Examples" : "Notes & Resources");
   const items = l.theories || l.notes || l.examples || [];
   document.getElementById("t-list").innerHTML = items.map(t=>
