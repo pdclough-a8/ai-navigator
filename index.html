@@ -97,6 +97,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
   background:transparent;color:var(--gray);flex-shrink:0;padding:0;}
 .dim-info-btn:hover{border-color:var(--navy);color:var(--navy);}
 .modal-box-wide{max-width:960px;}
+.modal-box-medium{max-width:620px;}
 .table-scroll{overflow-x:auto;margin-top:4px;}
 .examples-table{width:100%;border-collapse:collapse;font-size:10.8px;min-width:680px;}
 .examples-table th,.examples-table td{padding:8px 10px;text-align:left;
@@ -159,12 +160,21 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 .gate-box-label{font-size:9.5px;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;color:#93C5FD;margin-bottom:4px;}
 .gate-box-q{font-size:12px;font-weight:700;color:#fff;line-height:1.5;}
-.sort-list{display:flex;flex-direction:column;}
-.sort-item{display:flex;gap:10px;padding:10px 0;border-top:1px solid #E2E8F0;}
-.sort-item:first-child{border-top:none;padding-top:0;}
-.sort-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:5px;}
-.sort-title{font-weight:700;font-size:12px;color:var(--dark);}
-.sort-desc{font-size:11px;color:#475569;line-height:1.5;margin-top:2px;}
+.ai-spectrum{margin-top:8px;}
+.ai-spectrum-row{display:grid;grid-template-columns:repeat(7,1fr);column-gap:4px;}
+.ai-spectrum-top{font-size:9.5px;font-weight:700;color:var(--dark);text-align:center;
+  line-height:1.25;display:flex;align-items:flex-end;justify-content:center;
+  min-height:26px;padding-bottom:6px;}
+.ai-spectrum-line-row{position:relative;height:12px;}
+.ai-spectrum-line-row::before{content:"";position:absolute;left:0;right:0;top:50%;
+  height:2px;background:#CBD5E1;transform:translateY(-50%);}
+.ai-spectrum-dot{width:10px;height:10px;border-radius:50%;background:var(--navy);
+  margin:0 auto;position:relative;z-index:1;}
+.ai-spectrum-bottom{font-size:9.5px;font-weight:700;color:var(--dark);text-align:center;
+  line-height:1.25;padding-top:6px;min-height:26px;}
+.ai-spectrum-ends{display:flex;justify-content:space-between;font-size:9.5px;
+  color:var(--gray);margin-top:2px;}
+.ai-spectrum-note{font-size:11px;color:#475569;line-height:1.55;margin-top:12px;}
 .gate-footnote{display:flex;gap:8px;align-items:flex-start;margin-top:14px;
   padding-top:12px;border-top:1px solid #E2E8F0;font-size:10.5px;color:var(--gray);
   font-style:italic;line-height:1.5;}
@@ -352,7 +362,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 
 <!-- - modal -->
 <div class="modal-overlay" id="whatisai-overlay" onclick="hideWhatIsAIModal()">
-  <div class="modal-box" onclick="event.stopPropagation()">
+  <div class="modal-box modal-box-medium" onclick="event.stopPropagation()">
     <div class="modal-hd" style="background:#fff;border-bottom-color:#E2E8F0;">
       <div class="modal-hd-row">
         <div>
@@ -364,33 +374,44 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
     <div class="modal-bd">
       <p>AI is a machine-based system that infers a mapping from data and/or knowledge through learning or reasoning to produce outputs - such as predictions, decisions, or content - in order to perform tasks that typically require human cognition, with varying autonomy and, sometimes, adaptiveness.</p>
       <div class="gate-box">
-        <div class="gate-box-label">Distinguishing characteristics</div>
-        <div class="gate-box-q">The main distinguising feature of an AI system is that it infers a mapping from data and/or knowledge to produce outputs, rather than computing an exact result over a fully specified structure. AI systems are also machine-based, seek to achieve specific objectives/goals, have the ability to learn from data, can operate with some degree of autonomy, and can adapt to new situations. However, determining what counts as AI can be complex as the notiono of AI is subjective, the AI Effect changes how we perceive AI capabilities over time, AI is often better viewed on a spectrum rather than a binary in/out, and people often claim AI capabilities that may not fully meet the definition (known as AI Washing). See further: <a href="https://oecd.ai/en/wonk/definition">OECD's article on what counts as AI</a> </div>
+        <div class="gate-box-label">Distinguishing features of AI</div>
+        <div class="gate-box-q">The main distinguising feature of an AI system is that it infers a mapping from data and/or knowledge to produce outputs, rather than computing an exact result over a fully specified structure. AI systems are also machine-based, seek to achieve specific objectives/goals, can operate with some degree of autonomy, and can adapt to new situations. AI systems also commonly have the ability to learn from data However, determining what counts as AI can be complex as the notion of AI is subjective, the AI Effect changes how we perceive AI capabilities over timeand people often claim AI capabilities that may not fully meet the definition (known as AI Washing). See further: <a href="https://oecd.ai/en/wonk/definition">OECD's article on what counts as AI</a> </div>
       </div>
-      <div class="t-label" style="margin-top:14px;">Examples of what counts as AI</div>
-      <div class="sort-list">
-        <div class="sort-item">
-          <span class="sort-dot" style="background:#16A34A;"></span>
-          <div>
-            <div class="sort-title">Usually AI</div>
-            <div class="sort-desc">Learns from data (supervised, unsupervised, reinforcement, self-supervised), or reasons over a knowledge base with no closed-form answer, such as LLM chatbots, recommender systems, AlphaGo and autonomous vehicles.</div>
-          </div>
+      <div class="t-label" style="margin-top:14px;">What counts as AI?</div>
+      <div class="ai-spectrum">
+        <div class="ai-spectrum-row">
+          <div class="ai-spectrum-top">Calculator</div>
+          <div class="ai-spectrum-top"></div>
+          <div class="ai-spectrum-top">GPS route planner</div>
+          <div class="ai-spectrum-top"></div>
+          <div class="ai-spectrum-top">Spam filter</div>
+          <div class="ai-spectrum-top"></div>
+          <div class="ai-spectrum-top">Self-driving car</div>
         </div>
-        <div class="sort-item">
-          <span class="sort-dot" style="background:#D97706;"></span>
-          <div>
-            <div class="sort-title">Borderline</div>
-            <div class="sort-desc">Parameters fitted to data but functional form fixed by a person (e.g. regression, ARIMA), or reasoning engines with no learning component.</div>
-          </div>
+        <div class="ai-spectrum-row ai-spectrum-line-row">
+          <div class="ai-spectrum-dot"></div>
+          <div class="ai-spectrum-dot"></div>
+          <div class="ai-spectrum-dot"></div>
+          <div class="ai-spectrum-dot"></div>
+          <div class="ai-spectrum-dot"></div>
+          <div class="ai-spectrum-dot"></div>
+          <div class="ai-spectrum-dot"></div>
         </div>
-        <div class="sort-item">
-          <span class="sort-dot" style="background:#94A3B8;"></span>
-          <div>
-            <div class="sort-title">Typically not AI, despite common labelling</div>
-            <div class="sort-desc">Exact optimisation or search over a known structure (linear programming, classical route planning algorithms - Dijkstra / A*, classical game playing systems), fixed formulas and database queries.</div>
-          </div>
+        <div class="ai-spectrum-row">
+          <div class="ai-spectrum-bottom"></div>
+          <div class="ai-spectrum-bottom">Scripted chatbot</div>
+          <div class="ai-spectrum-bottom"></div>
+          <div class="ai-spectrum-bottom">Expert system</div>
+          <div class="ai-spectrum-bottom"></div>
+          <div class="ai-spectrum-bottom">LLM chatbot</div>
+          <div class="ai-spectrum-bottom"></div>
+        </div>
+        <div class="ai-spectrum-ends">
+          <span>Not AI</span>
+          <span>Definitely AI</span>
         </div>
       </div>
+      <p class="ai-spectrum-note">Because of the challenges of defining AI, it is often better to view what counts as AI on a spectrum rather than a binary in/out.</p>
       <div class="gate-footnote"><span class="gate-footnote-icon">i</span> Task names don&rsquo;t determine AI status &ndash; &ldquo;forecasting&rdquo;, &ldquo;optimisation&rdquo;, and &ldquo;AI-powered insights&rdquo; can all be done with or without inference. The algorithm is also not a key determinant of AI-ness - although Machine Learning (especially Deep Learning) is often used to power AI systems but symbolic, logic, optimisation and genetic approaches can also be used. </div>
     </div>
   </div>
