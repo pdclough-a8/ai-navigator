@@ -209,7 +209,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 <main class="main">
   <div class="page-intro">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:nowrap;">
-      <div class="page-headline" style="margin-bottom:0;">What the system is &middot; How to evaluate it</div>
+      <div class="page-headline" style="margin-bottom:0;">-system is &middot; How to evaluate it</div>
       <button id="intro-btn" onclick="showIntroModal()" aria-label="Overview" style="padding:5px 9px;border-radius:6px;background:var(--navy);color:#fff;border:none;font-weight:700;cursor:pointer;font-size:11px;line-height:1.2;align-self:center;">Overview</button>
       <button id="examples-btn" onclick="showExamplesModal()" aria-label="Worked Examples" style="padding:5px 9px;border-radius:6px;background:#fff;color:var(--navy);border:1.5px solid var(--navy);font-weight:700;cursor:pointer;font-size:11px;line-height:1.2;align-self:center;">Worked Examples</button>
     </div>
@@ -219,12 +219,12 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 
   <div class="top-row">
     <div class="layers-col">
-      <div class="dim-group-title">What the system is</div>
+      <div class="dim-group-title">-system is</div>
       <div class="dim-group">
         <div class="panel">
           <div class="ph">
             <div class="ph-title">LAYERS</div>
-            <div class="ph-sub">What the AI system <em>is</em> at each level of abstraction (from how it works to what it does)</div>
+            <div class="ph-sub">-AI system <em>is</em> at each level of abstraction (from how it works to what it does)</div>
           </div>
           <div id="layers-body"></div>
         </div>
@@ -283,7 +283,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 
   <div class="insight-bar">
     <strong>Two dimensions of AI characterisation:</strong>
-    <strong>What the system is</strong> &ndash; Layers, Scope &amp; Autonomy describe the system itself, at increasing levels of abstraction&nbsp;&middot;&nbsp;
+    <strong>-system is</strong> &ndash; Layers, Scope &amp; Autonomy describe the system itself, at increasing levels of abstraction&nbsp;&middot;&nbsp;
     <strong>How to evaluate it, and when</strong> &ndash; Lenses answer <em>how</em>, Lifecycle answers <em>when</em>.
     Together they form a complete compass for understanding, deploying, and governing AI systems.
   </div>
@@ -326,7 +326,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
     </div>
     <div class="modal-bd">
       <p>The AI Navigator provides a way of characterising and viewing AI systems from different perspectives to help you better understand AI. The interactive page maps systems across two families of dimensions. Use the bullets below to get started or jump straight into the page.</p>
-      <p style="margin-top:10px;font-weight:700;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);">What the system is</p>
+      <p style="margin-top:10px;font-weight:700;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);">-system is</p>
       <ul>
         <li><strong>Layers</strong> - the system's technical anatomy, from how it works to what it does (capabilities, deployment context, paradigm, learning approach, training data, algorithm).</li>
         <li><strong>Scope</strong> - how general the underlying intelligence is (narrow, general-purpose, or hypothetical AGI).</li>
@@ -375,7 +375,7 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
       <p>AI is a machine-based system that infers a mapping from data and/or knowledge through learning or reasoning to produce outputs - such as predictions, decisions, or content - in order to perform tasks that typically require human cognition, with varying autonomy and, sometimes, adaptiveness.</p>
       <div class="gate-box">
         <div class="gate-box-label">Distinguishing features of AI</div>
-        <div class="gate-box-q">The main distinguising feature of an AI system is that it infers a mapping from data and/or knowledge to produce outputs, rather than computing an exact result over a fully specified structure. AI systems are also machine-based, seek to achieve specific objectives/goals, can operate with some degree of autonomy, and can adapt to new situations. AI systems also commonly have the ability to learn from data However, determining what counts as AI can be complex as the notion of AI is subjective, the AI Effect changes how we perceive AI capabilities over timeand people often claim AI capabilities that may not fully meet the definition (known as AI Washing). See further: <a href="https://oecd.ai/en/wonk/definition">OECD's article on what counts as AI</a> </div>
+        <div class="gate-box-q">The main distinguising feature of an AI system is that it infers a mapping from data and/or knowledge to produce outputs, rather than computing an exact result over a fully specified structure. AI systems are also machine-based, seek to achieve specific objectives/goals, can operate with some degree of autonomy, and can adapt to new situations. AI systems also commonly have the ability to learn from data However, determining what counts as AI can be complex as the notion of AI is subjective, the AI Effect changes how we perceive AI capabilities over time and people often claim AI capabilities that may not fully meet the definition (known as AI Washing). See further: <a href="https://ai-act-service-desk.ec.europa.eu/sites/default/files/2025-08/commission_guidelines_on_the_definition_of_an_artificial_intelligence_system_established_by_regulation_eu_20241689_ai_actenglish_nf2skcqfrtjdfggjavcodopcwz4_112455.PDF">EU guidance on what counts as AI</a> </div>
       </div>
       <div class="t-label" style="margin-top:14px;">What counts as AI?</div>
       <div class="ai-spectrum">
@@ -508,11 +508,11 @@ body{font-family:var(--font);background:#F5F6F8;color:var(--dark);min-height:100
 
 <script>
 const LAYERS=[
-  {id:"capabilities",   label:"Capabilities",        desc:"<b>What the AI does</b>: translate, classify, generate, predict, recommend",                                                       bg:"#1a3a6e", notes:[{name:"Capabilities",author:"AI Design Kit",desc:"Define the system's core outputs, supported modalities, and the user problems it is designed to solve. Clarify expected capabilities versus limitations so stakeholders can align value, trust, and scope.",url:"https://aidesignkit.github.io/"}]},
-  {id:"operational",    label:"Deployment Context",   desc:"<b>Where and how it runs</b>: cloud, edge, on-device; embedded, internal, or public-facing; real-time or batch", bg:"#1c3e78", notes:[{name:"Deployment context",author:"Wikipedia",desc:"Describe the runtime environment, how the system is exposed to its users or host application, and whether it serves requests in real time, in batches, or asynchronously. Note integration points and what the system depends on to run.",url:"https://en.wikipedia.org/wiki/MLOps"}]},
+  {id:"capabilities",   label:"Capabilities",        desc:"<b>-AI does</b>: translate, classify, generate, predict, recommend",                                                       bg:"#1a3a6e", notes:[{name:"Capabilities",author:"AI Design Kit",desc:"Define the system's core outputs, supported modalities, and the user problems it is designed to solve. Clarify expected capabilities versus limitations so stakeholders can align value, trust, and scope.",url:"https://aidesignkit.github.io/"}]},
+  {id:"operational",    label:"Deployment Context",   desc:"<b>Where and how it runs and gets accessed</b>: cloud, edge, on-device; embedded, internal, or public-facing; user-invoked or system-invoked; real-time or batch", bg:"#1c3e78", notes:[{name:"Deployment context",author:"Wikipedia",desc:"Describe the runtime environment, how AI is accessed and integrated into the host application, and whether it serves requests in real time, in batches, or asynchronously. Note integration points and -system depends on to run.",url:"https://en.wikipedia.org/wiki/MLOps"}]},
   {id:"paradigm",       label:"Paradigm",             desc:"<b>The fundamental approach</b>: generative AI, predictive ML, symbolic, hybrid",                                                  bg:"#1a3a74", notes:[{name:"Paradigm",author:"Wikipedia",desc:"Capture the model family and reasoning style being used: generative, predictive, symbolic, or hybrid. Explain how that choice affects explainability, confidence, and expected failure modes.",url:"https://en.wikipedia.org/wiki/Machine_learning"}]},
   {id:"learning",       label:"Learning Approach",    desc:"<b>How knowledge is acquired</b>: supervised, unsupervised, reinforcement, self-supervised",                                       bg:"#173570", notes:[{name:"Learning approach",author:"Wikipedia",desc:"Summarise how the system learns from data or feedback, including whether training is supervised, unsupervised, reinforcement, or self-supervised, and what retraining cycle is expected.",url:"https://en.wikipedia.org/wiki/Supervised_learning"}]},
-  {id:"training_data",  label:"Training Data",        desc:"<b>What the system learned from</b>: source, modality, scale, domain scope, and quality of the training corpus",                  bg:"#142e68", notes:[{name:"Training data",author:"Wikipedia",desc:"Summarise data provenance, coverage, quality and bias risk. Note whether data is curated, synthetic, third-party or user-generated, and how freshness is maintained.",url:"https://en.wikipedia.org/wiki/Training_data"}]},
+  {id:"training_data",  label:"Training Data",        desc:"<b>-system learned from</b>: source, modality, scale, domain scope, and quality of the training corpus",                  bg:"#142e68", notes:[{name:"Training data",author:"Wikipedia",desc:"Summarise data provenance, coverage, quality and bias risk. Note whether data is curated, synthetic, third-party or user-generated, and how freshness is maintained.",url:"https://en.wikipedia.org/wiki/Training_data"}]},
   {id:"algorithm",      label:"Algorithm / Architecture", desc:"<b>The specific technique</b>: transformer, CNN, decision tree, diffusion model",                                             bg:"#112660", notes:[{name:"Algorithm",author:"Wikipedia",desc:"Identify the model or architecture family, its complexity, and the operational tradeoffs for performance, interpretability, and scalability.",url:"https://en.wikipedia.org/wiki/Machine_learning_algorithm"}]}
 ];
 
